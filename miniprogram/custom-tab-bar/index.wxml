@@ -1,0 +1,9 @@
+<view class="tabbar" aria-role="navigation" aria-label="主导航">
+  <view wx:for="{{tabs}}" wx:key="key" class="tab" aria-role="button" aria-label="{{item.label}}{{dots[index] ? '，有新消息' : ''}}" aria-selected="{{selected === index}}" data-idx="{{index}}" bindtap="onTap">
+    <view class="tab-pill" style="background:{{selected === index ? '#EAF5EA' : 'transparent'}}">
+      <ui-icon name="{{item.icon}}" color="{{selected === index ? '#1F5C38' : '#66756B'}}" size="42" />
+      <view wx:if="{{dots[index]}}" class="dot-red"></view>
+    </view>
+    <text class="tab-label" style="color:{{selected === index ? '#1F5C38' : '#66756B'}}">{{item.label}}</text>
+  </view>
+</view>

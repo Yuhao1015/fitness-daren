@@ -1,0 +1,4 @@
+node_modules/
+tools/preview/dist/
+project.private.config.json
+*.log

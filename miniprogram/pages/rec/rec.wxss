@@ -1,0 +1,32 @@
+.basis { align-self: flex-start; font-size: 23rpx; font-weight: 600; color: var(--green-dark); background: var(--tint); padding: 8rpx 23rpx; border-radius: 999px; }
+.stack { position: relative; height: 915rpx; perspective: 2308rpx; }
+.card-back2 { position: absolute; left: 0; right: 54rpx; top: 62rpx; height: 854rpx; border-radius: var(--r-md); border: 1px solid rgba(30, 60, 40, 0.10); box-shadow: -12rpx 19rpx 35rpx rgba(30, 60, 40, 0.12); }
+.card-next { position: absolute; left: 27rpx; right: 27rpx; top: 31rpx; height: 854rpx; border-radius: var(--r-md); background: #FFFFFF; border: 1px solid rgba(30, 60, 40, 0.12); box-shadow: -15rpx 23rpx 42rpx rgba(30, 60, 40, 0.15); overflow: hidden; display: flex; flex-direction: column; }
+.card-next-fade { opacity: 0.1; transform: translateY(19rpx); }
+.card-top { position: absolute; left: 54rpx; right: 0; top: 0; height: 854rpx; border-radius: var(--r-md); background: #FFFFFF; border: 1px solid var(--border); box-shadow: -4rpx 6rpx 12rpx rgba(30, 60, 40, 0.08), -23rpx 38rpx 69rpx rgba(30, 60, 40, 0.20); overflow: hidden; display: flex; flex-direction: column; transform-origin: 50% 120%; }
+.drag { flex: 1; display: flex; flex-direction: column; }
+.art { height: 231rpx; flex: none; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.halo { position: absolute; width: 346rpx; height: 346rpx; border-radius: 999px; background: rgba(255, 255, 255, 0.45); top: -31rpx; }
+.body { padding: 31rpx 31rpx 0; display: flex; flex-direction: column; gap: 23rpx; }
+.name { font-size: 38rpx; line-height: 54rpx; font-weight: 700; }
+.macros { gap: 12rpx; }
+.macro { border-radius: var(--r-sm); background: var(--tint-2); padding: 15rpx 0; display: flex; flex-direction: column; align-items: center; }
+.split { display: flex; height: 15rpx; border-radius: 999px; overflow: hidden; gap: 4rpx; }
+.ing { font-size: 23rpx; color: var(--ink); background: #F3F6F2; border-radius: 999px; padding: 8rpx 19rpx; }
+.card-foot { padding: 23rpx 31rpx 31rpx; flex: none; }
+.btn-added { height: 92rpx; border-radius: 999px; border: 1px solid var(--green); background: var(--tint); color: var(--green-dark); font-size: 31rpx; font-weight: 600; }
+
+.flip { position: relative; flex: 1; display: flex; flex-direction: column; transform-style: preserve-3d; transition: transform 0.45s ease; }
+.flipped { transform: rotateY(180deg); }
+.face { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: #FFFFFF; }
+.back { transform: rotateY(180deg); }
+.back-body { flex: 1; padding: 38rpx 31rpx 0; overflow-y: auto; }
+.step { display: flex; gap: 15rpx; align-items: flex-start; }
+.step-no { flex: none; width: 38rpx; height: 38rpx; border-radius: 999px; background: var(--tint); color: var(--green-dark); font-size: 23rpx; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.back-actions { padding: 23rpx 31rpx 31rpx; }
+.new-tag { position: absolute; top: 19rpx; right: 19rpx; font-size: 21rpx; font-weight: 600; color: var(--green-dark); background: rgba(255, 255, 255, 0.8); padding: 4rpx 15rpx; border-radius: 999px; }
+.offscreen { position: fixed; left: -9999px; top: 0; width: 500px; height: 400px; }
+.legend3 { display: flex; align-items: center; gap: 23rpx; font-size: 23rpx; color: var(--text-2); }
+.lg3 { display: flex; align-items: center; gap: 8rpx; }
+.flip-hint { margin-left: auto; display: flex; opacity: 0.8; }
+.dot-6 { width: 12rpx; height: 12rpx; border-radius: 999px; }

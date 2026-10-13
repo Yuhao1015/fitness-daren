@@ -1,0 +1,18 @@
+<view class="screen">
+  <page-header over="练后餐图鉴" title="已收录 {{vm.count}} / {{vm.total}}" num="" num-label="" />
+  <view class="panel">
+    <scroll-view class="scroll" scroll-y>
+      <view class="content stack-16">
+        <text class="t14 c2">在「推荐」里记入一道菜，就会收录到这里。集齐 6 道可以获得徽章。</text>
+        <view class="grid-3">
+          <view wx:for="{{vm.items}}" wx:key="key" class="cell {{item.collected ? '' : 'locked'}}">
+            <dish-art recipe-id="{{item.recipeId}}" hot="{{false}}" width="{{190}}" />
+            <text class="t14 b">{{item.name}}</text>
+            <text class="t12 c2">{{item.dateText}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="foot"><view class="btn btn-ghost" hover-class="is-pressed" aria-role="button" bindtap="onBack">返回</view></view>
+  </view>
+</view>

@@ -1,0 +1,196 @@
+<view class="screen">
+  <page-header over="{{vm.header.over}}" title="{{vm.header.title}}" num="{{vm.header.num}}" num-label="{{vm.header.numLabel}}" />
+  <view class="panel">
+    <scroll-view class="scroll" scroll-y enhanced show-scrollbar="{{false}}">
+      <view class="content stack-24">
+        <view wx:if="{{features.social && hasCloud}}" class="seg" aria-role="tablist">
+          <view class="seg-item {{view === 'data' ? 'on' : ''}}" aria-role="tab" aria-selected="{{view === 'data'}}" data-id="data" bindtap="onView">我的数据</view>
+          <view class="seg-item {{view === 'social' ? 'on' : ''}}" aria-role="tab" aria-selected="{{view === 'social'}}" data-id="social" bindtap="onView">搭子 · 挑战</view>
+        </view>
+
+        <!-- ===== 我的数据 ===== -->
+        <block wx:if="{{view === 'data'}}">
+          <view wx:if="{{inbox.show}}" class="echo {{inbox.unread ? 'echo-new' : ''}}" hover-class="is-pressed" aria-role="button" bindtap="onInboxOpen">
+            <view class="row-between"><text class="t14 b cg">回响</text><text wx:if="{{inbox.unread}}" class="badge echo-badge">{{inbox.unread}} 条新回响</text></view>
+            <view wx:for="{{inbox.items}}" wx:key="key" wx:if="{{index < 3}}" class="echo-row"><view class="dot" style="background:{{item.unread ? '#D1497A' : 'transparent'}}"></view><text class="t14 {{item.strong ? 'b' : ''}}">{{item.text}}</text></view>
+          </view>
+
+          <view class="stack-12">
+            <view class="row-between">
+              <view class="row-4"><ui-icon name="tab-cal" color="#1F5C38" size="42" /><text class="t16 b">12 周</text></view>
+              <view class="row-4 t12 c2" aria-hidden="true"><view class="lv" style="background:#EEF2EE"></view><view class="lv" style="background:#B9DABF"></view><view class="lv" style="background:#6FB27F"></view><view class="lv" style="background:#2E7D4F"></view></view>
+            </view>
+            <view class="heat-wrap">
+              <view class="heat-days"><text>一</text><text></text><text>三</text><text></text><text>五</text><text></text><text>日</text></view>
+              <view class="heat">
+                <view wx:for="{{vm.heat}}" wx:key="key" class="hc" style="border-color:{{item.bd}};background:{{item.bg}};outline:2px solid {{item.ol}}" aria-role="button" aria-label="{{item.aria}}" data-key="{{item.key}}" bindtap="onHeat"></view>
+              </view>
+            </view>
+            <text class="detail" aria-live="polite">{{vm.heatDetail}}</text>
+            <view class="grid-3">
+              <view class="stat-line" aria-label="12 周打卡 {{vm.totalDays}} 天"><ui-icon name="check" color="#2E7D4F" size="38" /><text class="t20 b">{{vm.totalDays}}</text></view>
+              <view class="stat-line" aria-label="最长坚持 {{vm.longest}} 天"><ui-icon name="flame" color="#D9822B" size="38" /><text class="t20 b">{{vm.longest}}</text></view>
+              <view class="stat-line" aria-label="连续达标 {{vm.weekStreak}} 周"><ui-icon name="cal-check" color="#5B7FB8" size="38" /><text class="t20 b">{{vm.weekStreak}}</text></view>
+            </view>
+          </view>
+
+          <!-- 本周肌群：正面 / 背面两个人形，按完成组数分 3 档着色 -->
+          <view class="stack-12">
+            <view class="row-between">
+              <view class="round sm-round" hover-class="is-pressed" aria-role="button" aria-label="上一周" aria-disabled="{{!vm.muscles.canPrev}}" style="opacity:{{vm.muscles.canPrev ? 1 : 0.35}}" data-d="-1" bindtap="onMuscleWeek"><ui-icon name="chevron-left" color="#1F5C38" size="31" /></view>
+              <text class="t16 b" aria-live="polite">{{vm.muscles.title}}</text>
+              <view class="round sm-round" hover-class="is-pressed" aria-role="button" aria-label="下一周" aria-disabled="{{!vm.muscles.canNext}}" style="opacity:{{vm.muscles.canNext ? 1 : 0.35}}" data-d="1" bindtap="onMuscleWeek"><ui-icon name="chevron-right" color="#1F5C38" size="31" /></view>
+            </view>
+            <view class="body-map" aria-label="{{vm.muscles.aria}}">
+              <view class="body-fig" style="background-image:url('{{vm.muscles.frontBg}}')"></view>
+              <view class="body-fig" style="background-image:url('{{vm.muscles.backBg}}')"></view>
+              <view class="body-legend" aria-hidden="true">
+                <view class="lg-row"><view class="lg" style="opacity:1"></view><text>10+</text></view>
+                <view class="lg-row"><view class="lg" style="opacity:.7"></view><text>5–9</text></view>
+                <view class="lg-row"><view class="lg" style="opacity:.4"></view><text>1–4</text></view>
+                <text class="lg-unit">组</text>
+              </view>
+            </view>
+            <text wx:if="{{vm.muscles.empty}}" class="t12 c2 center">这一周还没有训练</text>
+          </view>
+
+          <view class="stack-12">
+            <view class="row-title"><ui-icon name="trophy" color="#8A4513" size="42" /><info-tip fg="{{vm.info.prog.fg}}" data-key="prog" bindtap="onInfo" /></view>
+            <view wx:if="{{vm.info.prog.open}}" class="note">{{vm.info.prog.text}}</view>
+            <view class="row-8 lifts">
+              <view wx:for="{{vm.prog.chips}}" wx:key="key" class="lift" hover-class="is-pressed" aria-role="button" aria-label="{{item.label}}" aria-selected="{{item.on}}" style="border-color:{{item.bd}};background:{{item.bg}}" data-id="{{item.id}}" bindtap="onLift">
+                <ui-icon name="{{item.icon}}" color="{{item.fg}}" size="50" />
+              </view>
+            </view>
+            <view wx:if="{{!vm.prog.unlocked}}" class="soft lock"><ui-icon name="report" color="#66756B" size="46" /><text class="t14 c2">{{vm.prog.lockText}}</text></view>
+            <view wx:else class="card chart-card">
+              <view class="row-between chart-head"><text class="t14" aria-live="polite">{{vm.prog.tip}}</text><text class="t14 b cg nowrap">{{vm.prog.gain}}</text></view>
+              <view class="chart">
+                <block wx:for="{{vm.prog.grid}}" wx:for-item="gl" wx:key="key">
+                  <view class="gl" style="top:{{gl.top}}"></view>
+                  <text class="gl-label" style="top:{{gl.top}}">{{gl.label}}</text>
+                </block>
+                <view class="plot" style="background-image:url('{{vm.prog.chartBg}}')">
+                  <view wx:for="{{vm.prog.points}}" wx:for-item="pt" wx:key="key" class="pt" style="left:{{pt.x}}%;top:{{pt.y}}%" aria-role="button" aria-label="{{pt.aria}}" data-date="{{pt.date}}" bindtap="onPoint">
+                    <view class="pt-dot" style="width:{{pt.size}}rpx;height:{{pt.size}}rpx;background:{{pt.fill}}"></view>
+                  </view>
+                  <text class="last" style="left:{{vm.prog.lastX}}%;top:{{vm.prog.lastY}}%">{{vm.prog.lastLabel}}</text>
+                </view>
+                <text class="x-start">{{vm.prog.xStart}}</text>
+                <text class="x-end">{{vm.prog.xEnd}}</text>
+              </view>
+            </view>
+          </view>
+
+          <view class="stack-12">
+            <text class="t16 b">{{vm.month.title}}</text>
+            <view class="grid-2">
+              <view wx:for="{{vm.month.fun}}" wx:key="key" class="fun"><text class="t12 c2">{{item.label}}</text><text class="t20 b">{{item.value}}</text><text class="t12 c2">{{item.note}}</text></view>
+            </view>
+            <view class="btn btn-primary" style="{{vm.month.report.unlocked ? '' : 'background:#E0EBDE;color:#4E5E53'}}" hover-class="is-pressed" aria-role="button" bindtap="onReport">
+              <ui-icon name="report" color="{{vm.month.report.unlocked ? '#FFFFFF' : '#4E5E53'}}" size="35" /><text class="ml8">{{vm.month.report.label}}</text>
+            </view>
+          </view>
+
+          <!-- 徽章入口：最近得到的 3 枚 + 下一枚的进度 -->
+          <view wx:if="{{features.badges && vm.badges}}" class="badge-entry" hover-class="is-pressed" aria-role="button" aria-label="徽章墙，已获得 {{vm.badges.earnedText}}" bindtap="onBadges">
+            <view class="row-between">
+              <view class="row-8"><ui-icon name="trophy" color="#1F5C38" size="42" /><text class="t14 b">徽章墙</text><text class="t12 c2">{{vm.badges.earnedText}}</text></view>
+              <view class="row-4">
+                <view wx:for="{{vm.badges.recent}}" wx:key="key" class="mini-badge" style="background:{{item.color}}" aria-label="{{item.name}}"><ui-icon name="{{item.icon}}" color="#FFFFFF" size="31" /></view>
+                <view wx:if="{{!vm.badges.recent.length}}" class="mini-badge mini-empty"><ui-icon name="trophy" color="#B4BEB6" size="31" /></view>
+              </view>
+            </view>
+            <view wx:if="{{vm.badges.next}}" class="stack-4">
+              <view class="row-between t12 c2"><text>下一枚 · {{vm.badges.next.name}}</text><text>{{vm.badges.next.progressText}}</text></view>
+              <view class="track"><view class="fill" style="width:{{vm.badges.next.pct}}%;background:{{vm.badges.next.color}}"></view></view>
+            </view>
+          </view>
+          <view class="grid-2">
+            <view wx:if="{{features.badges}}" class="entry" hover-class="is-pressed" aria-role="button" bindtap="onPersona"><ui-icon name="tab-me" color="#1F5C38" size="46" /><text class="t14 b">训练人格</text></view>
+            <view wx:if="{{features.poster}}" class="entry" hover-class="is-pressed" aria-role="button" bindtap="onDishBook"><ui-icon name="tab-food" color="#1F5C38" size="46" /><text class="t14 b">练后餐图鉴</text></view>
+            <view wx:if="{{features.poster}}" class="entry" hover-class="is-pressed" aria-role="button" bindtap="onAlbum"><ui-icon name="poster" color="#1F5C38" size="46" /><text class="t14 b">海报册</text></view>
+          </view>
+          <view class="btn btn-text" hover-class="is-pressed" aria-role="button" bindtap="onSettings">设置与隐私</view>
+        </block>
+
+        <!-- ===== 搭子 · 挑战（原型 569–652） ===== -->
+        <block wx:if="{{view === 'social'}}">
+          <view class="stack-12">
+            <view class="row-between">
+              <view class="row-title"><text class="t16 b">打卡挑战</text><info-tip fg="{{social.info.challenge.fg}}" data-key="challenge" bindtap="onInfo" /></view>
+              <view class="btn btn-sm-outline" hover-class="is-pressed" aria-role="button" bindtap="onSheetOpen">+ 发起挑战</view>
+            </view>
+            <view wx:if="{{social.info.challenge.open}}" class="note">{{social.info.challenge.text}}</view>
+            <text wx:if="{{!social.challenges.length}}" class="t14 c2">还没有挑战。发起一个，发到群里，大家每次完成训练都会自动打卡。</text>
+            <view wx:for="{{social.challenges}}" wx:for-item="ch" wx:key="key" class="card ch">
+              <view class="row-between ch-head" aria-role="button" data-id="{{ch.id}}" bindtap="onOpenChallenge">
+                <view class="stack-2"><text class="t16 b">{{ch.name}}</text><text class="t12 c2">{{ch.sub}}</text></view>
+                <text class="badge" style="background:{{ch.badgeBg}};color:{{ch.badgeFg}}">{{ch.badge}}</text>
+              </view>
+              <view class="stack-4">
+                <view class="row-between t12 c2"><text>{{ch.progressText}}</text><text>{{ch.myText}}</text></view>
+                <view class="track"><view class="fill" style="width:{{ch.pct}}%"></view></view>
+              </view>
+              <view wx:if="{{ch.open}}" class="stack-4">
+                <view wx:for="{{ch.rank}}" wx:for-item="rk" wx:key="key" class="rank-row" style="background:{{rk.bg}}">
+                  <text class="rank-no" style="color:{{rk.noFg}}">{{rk.no}}</text>
+                  <image wx:if="{{rk.avatar}}" class="av" src="{{rk.avatar}}" mode="aspectFill" />
+                  <view wx:else class="av" style="background:{{rk.av}}"><text>{{rk.initial}}</text></view>
+                  <text class="t14 rank-name" style="font-weight:{{rk.weight}}">{{rk.name}}</text>
+                  <text class="t14 b">{{rk.value}}</text>
+                </view>
+              </view>
+              <view class="grid-2">
+                <button wx:if="{{ch.canInvite}}" class="plain-btn btn btn-ghost cg" open-type="share" data-share="challenge" data-id="{{ch.id}}">发到群里</button>
+                <view wx:if="{{ch.canSettle}}" class="btn btn-sm-primary" hover-class="is-pressed" aria-role="button" data-id="{{ch.id}}" bindtap="onSettle">生成结算海报</view>
+                <view class="btn btn-ghost" hover-class="is-pressed" aria-role="button" data-id="{{ch.id}}" bindtap="onOpenChallenge">{{ch.open ? '收起排行' : '查看排行'}}</view>
+              </view>
+            </view>
+          </view>
+
+          <view class="stack-12">
+            <view class="row-title"><text class="t16 b">健身搭子</text><info-tip fg="{{social.info.buddy.fg}}" data-key="buddy" bindtap="onInfo" /></view>
+            <view wx:if="{{social.info.buddy.open}}" class="note">{{social.info.buddy.text}}</view>
+            <view wx:for="{{social.buddies}}" wx:for-item="bd" wx:key="key" class="card buddy">
+              <image wx:if="{{bd.avatar}}" class="av-lg" src="{{bd.avatar}}" mode="aspectFill" />
+              <view wx:else class="av-lg" style="background:{{bd.av}}"><text>{{bd.initial}}</text></view>
+              <view class="stack-2 buddy-main">
+                <view><text class="t16 b">{{bd.name}}</text><text class="t12 c2 ml8">{{bd.streak}}</text></view>
+                <text class="t12" style="color:{{bd.statusFg}}">{{bd.status}}</text>
+              </view>
+              <view wx:if="{{bd.canDuo}}" class="btn btn-sm-outline" hover-class="is-pressed" aria-role="button" data-id="{{bd.id}}" bindtap="onDuo">合体海报</view>
+              <view class="btn act" style="border-color:{{bd.actBd}};background:{{bd.actBg}};color:{{bd.actFg}}" hover-class="is-pressed" aria-role="button" aria-label="{{bd.actAria}}" aria-selected="{{bd.actOn}}" data-id="{{bd.id}}" bindtap="onBuddyAct">{{bd.actText}}</view>
+            </view>
+            <button class="plain-btn btn btn-invite" open-type="share" data-share="buddy">+ 邀请好友成为搭子</button>
+            <view class="privacy">
+              <view class="stack-2"><text class="t14 b">向搭子展示训练详情</text><text class="t12 c2">{{social.privacy.note}}</text></view>
+              <view class="switch" style="background:{{social.privacy.swBg}}" aria-role="switch" aria-checked="{{social.privacy.on}}" aria-label="向搭子展示训练详情" bindtap="onTogglePrivacy"><view class="knob" style="transform:translateX({{social.privacy.knob}}rpx)"></view></view>
+            </view>
+            <view class="btn btn-text" hover-class="is-pressed" aria-role="button" bindtap="onAllowNudge">允许搭子「拍一拍」时提醒我</view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+    <view class="tab-gap"></view>
+  </view>
+
+  <!-- 发起挑战底部面板（原型 763–785） -->
+  <view wx:if="{{social.sheet.open}}" class="mask">
+    <view class="mask-close" aria-role="button" aria-label="关闭" bindtap="onSheetClose"></view>
+    <view class="sheet" aria-role="dialog" aria-label="发起打卡挑战">
+      <view class="grabber"></view>
+      <text class="t20 b">发起打卡挑战</text>
+      <view wx:for="{{social.sheet.groups}}" wx:for-item="og" wx:key="key" class="stack-8">
+        <text class="t14 c2">{{og.label}}</text>
+        <view class="grid-3">
+          <view wx:for="{{og.items}}" wx:for-item="oi" wx:key="key" class="chip t14" hover-class="is-pressed" aria-role="button" aria-selected="{{oi.on}}" style="border-color:{{oi.bd}};background:{{oi.bg}};color:{{oi.fg}}" data-field="{{oi.field}}" data-id="{{oi.id}}" bindtap="onSheetPick">{{oi.label}}</view>
+        </view>
+      </view>
+      <text class="preview">{{social.sheet.preview}}</text>
+      <view class="btn btn-primary" hover-class="is-pressed" aria-role="button" bindtap="onCreateChallenge">生成挑战卡片</view>
+      <text class="t12 c2 center">生成后可以发到群里邀请大家，也可以先自己开始</text>
+    </view>
+  </view>
+  <toast id="toast" />
+</view>

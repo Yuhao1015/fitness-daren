@@ -1,0 +1,31 @@
+{
+  "name": "jianshen-daren",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "check:bindings": "node scripts/check-bindings.mjs",
+    "sprites": "node scripts/extract-sprites.mjs && node scripts/export-sprites.mjs",
+    "preview": "node tools/preview/serve.mjs",
+    "shots": "node scripts/capture-screenshots.mjs",
+    "check:project": "node scripts/check-project.mjs",
+    "icons": "tsx scripts/export-icons.ts"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "@types/node": "^26.6.5",
+    "esbuild": "^0.28.2",
+    "miniprogram-api-typings": "^5.2.3",
+    "morphdom": "^2.7.8",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.3"
+  },
+  "description": "健身达人：微信小程序（前端）。图标优先的训练记录、练后饮食与打卡分享。",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Yuhao1015/fitness-daren.git"
+  }
+}

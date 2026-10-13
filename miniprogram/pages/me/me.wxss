@@ -1,0 +1,66 @@
+.lv { width: 19rpx; height: 19rpx; border-radius: 6rpx; }
+.heat-wrap { display: flex; gap: 12rpx; }
+.heat-days { display: grid; grid-template-rows: repeat(7, 38rpx); row-gap: 8rpx; font-size: 23rpx; color: var(--text-3); width: 27rpx; line-height: 38rpx; }
+.heat { flex: 1; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: 38rpx; gap: 8rpx; }
+.hc { border-radius: 8rpx; border: 1px solid transparent; outline-offset: 1px; box-sizing: border-box; }
+.detail { font-size: 27rpx; background: var(--tint-2); border-radius: var(--r-sm); padding: 15rpx 23rpx; }
+.lifts { overflow-x: auto; }
+.lift { flex: none; width: 108rpx; height: 85rpx; border-radius: 999px; border: 1px solid var(--border); box-sizing: border-box; display: flex; align-items: center; justify-content: center; }
+.lock { padding: 38rpx; display: flex; align-items: center; gap: 23rpx; border-radius: var(--r-md); }
+.chart-card { padding: 31rpx 23rpx 23rpx; display: flex; flex-direction: column; gap: 15rpx; }
+.chart-head { padding: 0 8rpx; align-items: baseline; }
+.nowrap { white-space: nowrap; }
+.chart { position: relative; height: 346rpx; }
+.gl { position: absolute; left: 77rpx; right: 23rpx; border-top: 1px solid var(--track); }
+.gl-label { position: absolute; left: 0; width: 65rpx; text-align: right; transform: translateY(-50%); font-size: 23rpx; color: var(--text-3); }
+.plot { position: absolute; left: 77rpx; right: 23rpx; top: 31rpx; bottom: 54rpx; background-size: 100% 100%; background-repeat: no-repeat; }
+.pt { position: absolute; width: 62rpx; height: 62rpx; margin: -31rpx 0 0 -31rpx; display: flex; align-items: center; justify-content: center; }
+.pt-dot { border-radius: 999px; box-shadow: 0 0 0 4rpx #FFFFFF; }
+.last { position: absolute; transform: translate(-100%, -150%); font-size: 23rpx; font-weight: 700; color: var(--green-dark); white-space: nowrap; }
+.x-start { position: absolute; left: 77rpx; bottom: 0; font-size: 23rpx; color: var(--text-3); }
+.x-end { position: absolute; right: 23rpx; bottom: 0; font-size: 23rpx; color: var(--text-3); }
+.fun { background: var(--tint-2); border-radius: var(--r-md); padding: 23rpx 27rpx; display: flex; flex-direction: column; gap: 4rpx; }
+.entry { border: 1px solid var(--border); border-radius: var(--r-md); padding: 27rpx; display: flex; align-items: center; gap: 19rpx; }
+.seg { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8rpx; padding: 8rpx; background: var(--chip-off); border-radius: 999px; }
+.seg-item { height: 85rpx; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-size: 27rpx; font-weight: 600; color: var(--text-2); }
+.seg-item.on { background: #FFFFFF; color: var(--green-dark); box-shadow: 0 2rpx 6rpx rgba(30, 60, 40, 0.15); }
+.echo { border-radius: var(--r-md); background: var(--tint-2); border: 1px solid var(--border); padding: 27rpx; display: flex; flex-direction: column; gap: 12rpx; }
+.echo-new { background: var(--tint); border-color: var(--green); }
+.echo-badge { background: #D1497A; color: #FFFFFF; }
+.echo-row { display: flex; align-items: flex-start; gap: 12rpx; }
+.ch { padding: 31rpx; display: flex; flex-direction: column; gap: 23rpx; }
+.ch-head { align-items: flex-start; }
+.track { height: 15rpx; border-radius: 999px; background: var(--track); overflow: hidden; }
+.fill { height: 15rpx; border-radius: 999px; background: var(--green); }
+.rank-row { display: flex; align-items: center; gap: 19rpx; padding: 12rpx 15rpx; border-radius: var(--r-sm); }
+.rank-no { width: 38rpx; text-align: center; font-size: 27rpx; font-weight: 700; }
+.av { width: 62rpx; height: 62rpx; border-radius: 999px; color: #FFFFFF; font-size: 27rpx; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none; }
+.rank-name { flex: 1; }
+.buddy { display: flex; align-items: center; gap: 23rpx; padding: 19rpx 19rpx 19rpx 27rpx; }
+.av-lg { width: 85rpx; height: 85rpx; border-radius: 999px; color: #FFFFFF; font-size: 31rpx; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none; }
+.buddy-main { flex: 1; min-width: 0; }
+.act { height: 85rpx; padding: 0 27rpx; border-radius: 999px; border: 1px solid var(--border); font-size: 27rpx; font-weight: 600; flex: none; }
+.btn-invite { height: 92rpx; border-radius: 999px; border: 1px dashed var(--green); color: var(--green-dark); font-size: 27rpx; font-weight: 600; background: #FFFFFF; }
+.privacy { display: flex; align-items: center; justify-content: space-between; gap: 23rpx; background: var(--tint-2); border-radius: var(--r-sm); padding: 23rpx 27rpx; }
+.switch { width: 100rpx; height: 62rpx; border-radius: 999px; padding: 6rpx; box-sizing: border-box; display: flex; flex: none; }
+.knob { width: 50rpx; height: 50rpx; border-radius: 999px; background: #FFFFFF; box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.2); transition: transform 0.2s ease; }
+.mask { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(20, 30, 24, 0.5); z-index: 500; }
+.mask-close { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; background: #FFFFFF; border-radius: 54rpx 54rpx 0 0; padding: 23rpx 38rpx calc(65rpx + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 31rpx; }
+.grabber { align-self: center; width: 77rpx; height: 8rpx; border-radius: 999px; background: var(--border); }
+.preview { font-size: 27rpx; background: var(--tint-2); border-radius: var(--r-sm); padding: 19rpx 23rpx; }
+.center { text-align: center; }
+
+/* 本周肌群 */
+.sm-round { width: 69rpx; height: 69rpx; }
+.body-map { display: flex; align-items: center; justify-content: center; gap: 23rpx; padding: 8rpx 0; }
+.body-fig { width: 177rpx; height: 354rpx; background-size: contain; background-repeat: no-repeat; background-position: center; }
+.body-legend { display: flex; flex-direction: column; gap: 12rpx; font-size: 21rpx; color: var(--text-2); margin-left: 8rpx; }
+.lg-row { display: flex; align-items: center; gap: 8rpx; }
+.lg { width: 23rpx; height: 23rpx; border-radius: 6rpx; background: var(--green); }
+.lg-unit { padding-left: 31rpx; }
+
+/* 徽章入口卡 */
+.badge-entry { border: 1px solid var(--border); border-radius: var(--r-md); padding: 23rpx 27rpx; display: flex; flex-direction: column; gap: 19rpx; background: #FFFFFF; }
+.mini-badge { width: 54rpx; height: 54rpx; border-radius: 999px; display: flex; align-items: center; justify-content: center; }
+.mini-empty { border: 1px dashed var(--border); }

@@ -1,0 +1,95 @@
+<wxs module="swipe" src="./swipe.wxs" />
+<view class="screen">
+  <page-header over="{{vm.header.over}}" title="{{vm.header.title}}" num="{{vm.header.num}}" num-label="{{vm.header.numLabel}}" />
+  <view class="panel">
+    <scroll-view class="scroll" scroll-y enhanced show-scrollbar="{{false}}">
+      <view class="content stack-16" change:cmd="{{swipe.onCmd}}" cmd="{{cmd}}">
+        <text class="basis">{{vm.basis}}</text>
+
+        <view class="stack">
+          <view class="card-back2" style="background:{{vm.back2Tint}}"></view>
+          <view class="card-next" aria-hidden="true">
+            <view class="art" style="background:{{vm.next.tint}}">
+              <view class="halo"></view>
+              <view class="card-next-fade"><dish-art recipe-id="{{vm.next.recipeId}}" hot="{{false}}" /></view>
+            </view>
+            <view class="body card-next-fade">
+              <text class="name">{{vm.next.name}}</text>
+              <view class="grid-4 macros">
+                <view class="macro"><text class="t16 b">{{vm.next.kcal}}</text><text class="t12 c2">kcal</text></view>
+                <view class="macro"><text class="t16 b">{{vm.next.p}}g</text><text class="t12 c2">蛋白质</text></view>
+                <view class="macro"><text class="t16 b">{{vm.next.c}}g</text><text class="t12 c2">碳水</text></view>
+                <view class="macro"><text class="t16 b">{{vm.next.f}}g</text><text class="t12 c2">脂肪</text></view>
+              </view>
+            </view>
+          </view>
+
+          <view class="card-top" aria-label="{{vm.card.name}}">
+            <view class="flip {{flipped ? 'flipped' : ''}}">
+              <view class="face front">
+                <view class="drag" bindtap="onFlip" bindtouchstart="{{swipe.down}}" bindtouchmove="{{swipe.move}}" bindtouchend="{{swipe.up}}" bindtouchcancel="{{swipe.up}}">
+                  <view class="art" style="background:{{vm.card.tint}}">
+                    <view class="halo"></view>
+                    <text wx:if="{{!vm.card.collected}}" class="new-tag" aria-label="未收录">新</text>
+                    <dish-art recipe-id="{{vm.card.recipeId}}" hot="{{true}}" />
+                  </view>
+                  <view class="body">
+                    <text class="name">{{vm.card.name}}</text>
+                    <view class="grid-4 macros">
+                      <view class="macro"><text class="t16 b">{{vm.card.kcal}}</text><text class="t12 c2">kcal</text></view>
+                      <view class="macro"><text class="t16 b">{{vm.card.p}}g</text><text class="t12 c2">蛋白质</text></view>
+                      <view class="macro"><text class="t16 b">{{vm.card.c}}g</text><text class="t12 c2">碳水</text></view>
+                      <view class="macro"><text class="t16 b">{{vm.card.f}}g</text><text class="t12 c2">脂肪</text></view>
+                    </view>
+                    <view class="stack-4">
+                      <view class="split" aria-label="{{vm.card.splitText}}">
+                        <view style="width:{{vm.card.pp}}%;background:#2E7D4F"></view>
+                        <view style="width:{{vm.card.cp}}%;background:#D9822B"></view>
+                        <view style="width:{{vm.card.fp}}%;background:#5B7FB8"></view>
+                      </view>
+                      <view class="legend3" aria-hidden="true">
+                        <view class="lg3"><view class="dot-6" style="background:#2E7D4F"></view><text>{{vm.card.pp}}%</text></view>
+                        <view class="lg3"><view class="dot-6" style="background:#D9822B"></view><text>{{vm.card.cp}}%</text></view>
+                        <view class="lg3"><view class="dot-6" style="background:#5B7FB8"></view><text>{{vm.card.fp}}%</text></view>
+                        <view class="flip-hint"><ui-icon name="flip" color="#66756B" size="35" /></view>
+                      </view>
+                    </view>
+                    <view class="wrap-6"><text wx:for="{{vm.card.chips}}" wx:key="*this" class="ing">{{item}}</text></view>
+                  </view>
+                </view>
+                <view class="card-foot">
+                  <view wx:if="{{!vm.card.added}}" class="btn btn-primary" hover-class="is-pressed" aria-role="button" bindtap="onAdd"><ui-icon name="plus" color="#FFFFFF" size="38" /><text class="ml8">记入</text></view>
+                  <view wx:else class="btn btn-added" hover-class="is-pressed" aria-role="button" bindtap="onGoFood"><ui-icon name="check" color="#1F5C38" size="31" /><text class="ml8">已记入</text></view>
+                </view>
+              </view>
+
+              <view class="face back" bindtap="onFlip">
+                <view class="back-body stack-16">
+                  <text class="t16 b">{{vm.card.reason}}</text>
+                  <view class="stack-8">
+                    <view wx:for="{{vm.card.steps}}" wx:key="*this" class="step"><text class="step-no">{{index + 1}}</text><text class="t14">{{item}}</text></view>
+                  </view>
+                  <view class="wrap-6"><text wx:for="{{vm.card.chips}}" wx:key="*this" class="ing">{{item}}</text></view>
+                </view>
+                <view class="grid-2 back-actions">
+                  <view class="btn btn-ghost row-8" hover-class="is-pressed" aria-role="button" aria-label="收藏" catchtap="onFav"><ui-icon name="{{vm.card.fav ? 'heart-fill' : 'heart'}}" color="#C23F6E" size="42" /></view>
+                  <button class="plain-btn btn btn-sm-primary" open-type="share" catchtap="onNoop" aria-label="分享这道"><ui-icon name="share" color="#FFFFFF" size="42" /></button>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <view class="row-between">
+          <view class="btn btn-ghost row-8" hover-class="is-pressed" aria-role="button" aria-label="撤回" bindtap="onUndo"><ui-icon name="undo" color="#1E2A22" size="38" /></view>
+          <view class="row-4"><text class="t12 c2">{{vm.counter}}</text><info-tip fg="{{vm.info.swipe.fg}}" data-key="swipe" bindtap="onInfo" /></view>
+          <view class="btn btn-ghost row-8" hover-class="is-pressed" aria-role="button" aria-label="下一道" bindtap="onNextTap"><ui-icon name="chevron-right" color="#1E2A22" size="38" /></view>
+        </view>
+        <view wx:if="{{vm.info.swipe.open}}" class="note">{{vm.info.swipe.text}}</view>
+      </view>
+    </scroll-view>
+    <view class="tab-gap"></view>
+  </view>
+  <canvas type="2d" id="share-canvas" class="offscreen"></canvas>
+  <toast id="toast" />
+</view>

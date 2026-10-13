@@ -1,0 +1,5 @@
+.tabbar { position: fixed; left: 0; right: 0; bottom: 0; background: #FFFFFF; border-top: 1px solid var(--border); padding: 12rpx 15rpx calc(12rpx + env(safe-area-inset-bottom)); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4rpx; z-index: 100; }
+.tab { height: 108rpx; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8rpx; }
+.tab-pill { position: relative; width: 108rpx; height: 58rpx; border-radius: 999px; display: flex; align-items: center; justify-content: center; }
+.tab-label { font-size: 23rpx; font-weight: 600; }
+.dot-red { position: absolute; top: 4rpx; right: 23rpx; width: 15rpx; height: 15rpx; border-radius: 999px; background: #D1497A; box-shadow: 0 0 0 3rpx #FFFFFF; }

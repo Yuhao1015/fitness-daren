@@ -1,0 +1,72 @@
+.suggest { background: var(--tint); border-radius: var(--r-md); padding: 23rpx 23rpx 23rpx 27rpx; display: flex; align-items: center; gap: 23rpx; }
+.suggest-ic { flex: none; width: 92rpx; height: 92rpx; border-radius: 999px; display: flex; align-items: center; justify-content: center; }
+.suggest-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4rpx; }
+.suggest-name { font-size: 38rpx; font-weight: 700; color: var(--green-dark); line-height: 1.1; }
+.go { flex: none; width: 92rpx; height: 92rpx; border-radius: 999px; background: var(--green); display: flex; align-items: center; justify-content: center; }
+.sec-head { min-height: 85rpx; border-radius: var(--r-sm); padding: 8rpx 15rpx; display: flex; align-items: center; gap: 15rpx; }
+.chev { flex: none; width: 54rpx; height: 54rpx; border-radius: 999px; background: var(--tint); display: flex; align-items: center; justify-content: center; }
+.sec-title { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4rpx; }
+.sec-name { font-size: 31rpx; font-weight: 700; display: flex; align-items: center; gap: 15rpx; }
+.cardio { border-radius: var(--r-md); border: 1px solid var(--border); padding: 31rpx; display: flex; flex-direction: column; gap: 23rpx; }
+.label { display: flex; flex-direction: column; gap: 8rpx; font-size: 23rpx; color: var(--text-2); }
+.btn-est { height: 85rpx; border-radius: 999px; border: 1px solid var(--border); background: #FFFFFF; color: var(--green-dark); font-size: 27rpx; font-weight: 600; }
+.ex { border-radius: var(--r-md); border: 1px solid var(--border); padding: 15rpx; display: flex; flex-direction: column; gap: 15rpx; }
+.ex-head { display: flex; align-items: center; gap: 12rpx; }
+.ex-toggle { flex: 1; min-width: 0; min-height: 85rpx; display: flex; align-items: center; gap: 12rpx; }
+.ex-title { min-width: 0; }
+.ex-name { font-size: 31rpx; font-weight: 500; }
+.count { min-width: 77rpx; text-align: center; font-size: 31rpx; font-weight: 600; }
+.rows { display: flex; flex-direction: column; gap: 12rpx; padding-bottom: 8rpx; }
+.set-row { display: grid; grid-template-columns: 92rpx minmax(0, 1fr) minmax(0, 1fr) 85rpx; gap: 12rpx; align-items: center; border-radius: var(--r-sm); padding: 6rpx 6rpx 6rpx 4rpx; margin: 0 -6rpx 0 -4rpx; transition: background-color .2s; }
+.set-row.is-done .input { font-weight: 700; color: var(--green-dark); }
+.set-row.is-done .check { animation: set-pop .16s ease-out; }
+.set-no { display: flex; flex-direction: column; align-items: center; gap: 4rpx; min-width: 0; }
+.no { width: 42rpx; height: 42rpx; border-radius: 999px; background: var(--track); color: var(--text-2); font-size: 23rpx; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.is-done .no { background: var(--green); color: #FFFFFF; }
+.prev { font-size: 19rpx; line-height: 1; color: var(--muted); white-space: nowrap; }
+.check { position: relative; }
+.pr-badge { position: absolute; left: -14rpx; top: -14rpx; width: 40rpx; height: 40rpx; border-radius: 999px; background: var(--warn-bg); border: 1px solid #F3D9C2; display: flex; align-items: center; justify-content: center; animation: set-pop .3s ease-out; }
+.repeat { background: var(--tint); border-color: var(--green); }
+@keyframes set-pop { 0% { transform: scale(1); } 45% { transform: scale(1.14); } 100% { transform: scale(1); } }
+.footer { flex: none; padding: 23rpx 35rpx 31rpx; background: #FFFFFF; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 15rpx; }
+.progress-line { display: flex; align-items: center; justify-content: center; gap: 4rpx; min-height: 46rpx; }
+.btn-complete { height: 92rpx; border-radius: 999px; font-size: 31rpx; font-weight: 600; }
+.done-card { border-radius: var(--r-md); background: var(--tint); padding: 38rpx; display: flex; flex-direction: column; gap: 31rpx; }
+.done-badge { width: 85rpx; height: 85rpx; border-radius: 999px; background: var(--green); display: flex; align-items: center; justify-content: center; flex: none; }
+.white-row { display: flex; align-items: center; justify-content: space-between; background: #FFFFFF; border-radius: var(--r-sm); padding: 23rpx 31rpx; }
+.big-num { font-size: 54rpx; font-weight: 700; color: var(--green-dark); }
+.serial { margin-top: -15rpx; text-align: right; }
+.pr { display: flex; align-items: center; gap: 15rpx; background: var(--warn-bg); border-radius: var(--r-sm); padding: 15rpx 23rpx; color: var(--warn-fg); font-size: 27rpx; font-weight: 600; }
+
+/* 本周 7 个点 */
+.week { display: flex; align-items: center; justify-content: space-between; padding: 0 8rpx; }
+.week-dots { display: flex; align-items: center; gap: 19rpx; }
+.wd { width: 23rpx; height: 23rpx; border-radius: 999px; border: 2px solid transparent; box-sizing: border-box; }
+.wd-today { width: 31rpx; height: 31rpx; border-width: 3px; }
+.week-text { font-size: 27rpx; font-weight: 700; color: var(--green-dark); }
+
+/* 休息条：替换「已完成 x / y 组」那一行 */
+.rest-bar { display: flex; align-items: center; gap: 15rpx; min-height: 85rpx; }
+.rest-ic { flex: none; width: 77rpx; height: 77rpx; border-radius: 999px; display: flex; align-items: center; justify-content: center; }
+.rest-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8rpx; }
+.rest-clock { font-size: 50rpx; line-height: 1; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+.rest-track { height: 8rpx; border-radius: 999px; background: var(--track); overflow: hidden; }
+.rest-fill { height: 100%; border-radius: 999px; transition: width .25s linear; }
+.rest-btn { flex: none; width: 85rpx; height: 77rpx; border-radius: 999px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 27rpx; font-weight: 600; color: var(--green-dark); background: #FFFFFF; }
+
+/* 完成卡片：已坚持天数旁边的月亮，练完补满 */
+.persist { display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+.moons { display: flex; gap: 2rpx; margin-left: 12rpx; }
+.moon-i { display: flex; }
+.refill .moon-i { animation: moon-fill .6s ease-out both; }
+.refill .moon-i:nth-child(2) { animation-delay: .18s; }
+@keyframes moon-fill { 0% { transform: scale(.4) rotate(-40deg); opacity: .2; } 70% { transform: scale(1.2) rotate(8deg); opacity: 1; } 100% { transform: scale(1) rotate(0); } }
+
+/* 设置里关闭动效 */
+.no-motion .set-row, .no-motion .check, .no-motion .pr-badge, .no-motion .moon-i, .no-motion .rest-fill { animation: none !important; transition: none !important; }
+
+/* 新手引导：在下一步要点的控件上出 3 次呼吸光圈（关闭动效时改成静止的描边） */
+.hint-ring { position: relative; }
+.hint-ring::after { content: ''; position: absolute; inset: -8rpx; border-radius: 999px; border: 3px solid var(--green); opacity: 0; pointer-events: none; animation: hint-breathe 1.4s ease-out 3; }
+.no-motion .hint-ring::after { animation: none; opacity: .6; }
+@keyframes hint-breathe { 0% { transform: scale(.9); opacity: .9; } 100% { transform: scale(1.35); opacity: 0; } }

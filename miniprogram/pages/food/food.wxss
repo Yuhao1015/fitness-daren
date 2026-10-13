@@ -1,0 +1,16 @@
+.sb { font-weight: 600; }
+.ml4 { margin-left: 8rpx; font-weight: 500; }
+.track { height: 12rpx; border-radius: 999px; background: var(--track); overflow: hidden; }
+.fill { height: 12rpx; border-radius: 999px; background: var(--green); }
+.grams { min-width: 123rpx; text-align: center; font-size: 38rpx; font-weight: 700; }
+.calc { padding: 31rpx; display: flex; flex-direction: column; gap: 23rpx; }
+.calc-top { align-items: flex-end; }
+.calc-kcal { font-size: 54rpx; font-weight: 700; line-height: 1; }
+.quick-add { background: var(--tint-2); border-radius: var(--r-sm); padding: 12rpx 12rpx 12rpx 23rpx; }
+.empty { padding: 31rpx; border: 1px dashed var(--border); border-radius: var(--r-sm); font-size: 27rpx; color: var(--text-2); text-align: center; }
+.log-row { border: 1px solid var(--border); border-radius: var(--r-sm); padding: 8rpx 8rpx 8rpx 31rpx; display: flex; align-items: center; gap: 15rpx; }
+.log-main { flex: 1; min-width: 0; }
+.no-border { border: none; background: transparent; }
+.tab-chip { width: 154rpx; }
+.frequent { display: flex; align-items: flex-start; gap: 12rpx; }
+.frequent > .wrap-6 { flex: 1; min-width: 0; }

@@ -1,0 +1,55 @@
+<view class="screen">
+  <view class="ob-head" style="padding-top:{{padTop}}px">
+    <view class="dots" aria-label="第 {{step + 1}} 步，共 4 步"><view wx:for="{{[0, 1, 2, 3]}}" wx:key="*this" class="dotp {{index <= step ? 'on' : ''}}"></view></view>
+    <text class="ob-title" wx:if="{{step === 0}}">你练的目标是？</text>
+    <text class="ob-title" wx:if="{{step === 1}}">每周想练几次？</text>
+    <text class="ob-title" wx:if="{{step === 2}}">让估算更准一点</text>
+    <text class="ob-title" wx:if="{{step === 3}}">都好了</text>
+  </view>
+  <view class="panel">
+    <view class="content stack-16 ob-body">
+      <view wx:if="{{step === 0}}" class="grid-3">
+        <view wx:for="{{goals}}" wx:key="key" class="goal" hover-class="is-pressed" aria-role="button" aria-selected="{{item.on}}" style="border-color:{{item.bd}};background:{{item.bg}}" data-id="{{item.id}}" bindtap="onGoal">
+          <ui-icon name="{{item.icon}}" color="{{item.fg}}" size="85" />
+          <text class="t16 b" style="color:{{item.fg}}">{{item.label}}</text>
+        </view>
+      </view>
+
+      <view wx:if="{{step === 1}}" class="stack-12">
+        <view class="grid-4">
+          <view wx:for="{{targets}}" wx:key="key" class="chip big-num" hover-class="is-pressed" aria-role="button" aria-label="每周 {{item.label}} 次" aria-selected="{{item.on}}" style="border-color:{{item.bd}};background:{{item.bg}};color:{{item.fg}}" data-id="{{item.id}}" bindtap="onTarget">{{item.label}}</view>
+        </view>
+      </view>
+
+      <view wx:if="{{step === 2}}" class="stack-16">
+        <view class="stack-4">
+          <input class="input input-plain" type="digit" placeholder="体重 kg · 选填" value="{{bodyweight}}" bindblur="onWeight" bindconfirm="onWeight" />
+          <text class="t12 c2">仅自己可见</text>
+        </view>
+        <view class="row-8">
+          <button class="plain-btn avatar" open-type="chooseAvatar" bindchooseavatar="onAvatar" aria-label="选择头像">
+            <image wx:if="{{avatarUrl}}" class="avatar-img" src="{{avatarUrl}}" mode="aspectFill" />
+            <ui-icon wx:else name="tab-me" color="#66756B" size="54" />
+          </button>
+          <input class="input input-plain nick" type="nickname" placeholder="昵称 · 选填" value="{{nickname}}" bindblur="onNick" />
+        </view>
+      </view>
+
+      <view wx:if="{{step === 3}}" class="stack-12">
+        <view class="steps" aria-label="选部位、加一组、打勾">
+          <view class="step-ic"><ui-icon name="part-chest" color="#E07B39" size="62" /></view>
+          <ui-icon name="chevron-right" color="#B4BEB6" size="42" />
+          <view class="step-ic"><ui-icon name="plus" color="#2E7D4F" size="54" /></view>
+          <ui-icon name="chevron-right" color="#B4BEB6" size="42" />
+          <view class="step-ic on"><ui-icon name="check" color="#FFFFFF" size="54" /></view>
+        </view>
+      </view>
+    </view>
+    <view class="ob-foot">
+      <view wx:if="{{step > 0}}" class="btn btn-ghost back" hover-class="is-pressed" aria-role="button" aria-label="上一步" bindtap="onBack"><ui-icon name="chevron-left" color="#1E2A22" size="38" /></view>
+      <view wx:if="{{step < 3}}" class="btn btn-primary grow" hover-class="is-pressed" aria-role="button" bindtap="onNext">下一步</view>
+      <view wx:else class="btn btn-primary grow" hover-class="is-pressed" aria-role="button" bindtap="onFinish">开始</view>
+    </view>
+  </view>
+  <privacy-popup />
+</view>

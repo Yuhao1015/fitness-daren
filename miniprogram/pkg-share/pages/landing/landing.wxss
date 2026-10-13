@@ -1,0 +1,16 @@
+.ld-head { padding: 140rpx 38rpx 35rpx; display: flex; flex-direction: column; gap: 15rpx; }
+.ld-title { font-size: 54rpx; line-height: 69rpx; font-weight: 700; }
+.avatar { width: 62rpx; height: 62rpx; border-radius: 999px; }
+.avatar-empty { background: #FFFFFF; display: flex; align-items: center; justify-content: center; }
+.placeholder { height: 400rpx; display: flex; align-items: center; justify-content: center; }
+.poster { width: 100%; border-radius: 38rpx; }
+.dish { overflow: hidden; }
+.art { height: 260rpx; display: flex; align-items: center; justify-content: center; }
+.dish-body { padding: 31rpx; }
+.macro { border-radius: var(--r-sm); background: var(--tint-2); padding: 15rpx 0; display: flex; flex-direction: column; align-items: center; }
+.ing { font-size: 23rpx; background: #F3F6F2; border-radius: 999px; padding: 8rpx 19rpx; }
+.plan { padding: 31rpx; display: flex; flex-direction: column; gap: 23rpx; }
+.pill { font-size: 27rpx; padding: 12rpx 23rpx; border-radius: 999px; background: var(--tint); color: var(--green-dark); }
+.rest { background: var(--chip-off); color: var(--text-2); }
+.ld-foot { padding: 23rpx 35rpx calc(31rpx + env(safe-area-inset-bottom)); border-top: 1px solid var(--border); }
+.offscreen { position: fixed; left: -9999px; top: 0; width: 310px; height: 600px; }

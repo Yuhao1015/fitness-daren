@@ -1,0 +1,17 @@
+.ob-head { padding-left: 38rpx; padding-right: 38rpx; padding-bottom: 35rpx; display: flex; flex-direction: column; gap: 8rpx; }
+.ob-title { font-size: 54rpx; line-height: 69rpx; font-weight: 700; }
+.ob-body { flex: 1; }
+.goal { border-radius: var(--r-md); border: 1px solid var(--border); padding: 38rpx 8rpx 31rpx; display: flex; flex-direction: column; align-items: center; gap: 19rpx; }
+.dots { display: flex; gap: 12rpx; height: 27rpx; align-items: center; }
+.dotp { width: 15rpx; height: 15rpx; border-radius: 999px; background: #C8D6CA; }
+.dotp.on { width: 46rpx; background: var(--green); }
+.big-num { font-size: 38rpx; font-weight: 700; }
+.steps { display: flex; align-items: center; justify-content: center; gap: 19rpx; padding: 46rpx 0; }
+.step-ic { width: 123rpx; height: 123rpx; border-radius: 999px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
+.step-ic.on { background: var(--green); border-color: var(--green); }
+.avatar { width: 108rpx; height: 108rpx; border-radius: 999px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; flex: none; }
+.avatar-img { width: 108rpx; height: 108rpx; }
+.nick { flex: 1; }
+.ob-foot { padding: 23rpx 35rpx calc(31rpx + env(safe-area-inset-bottom)); border-top: 1px solid var(--border); display: flex; gap: 15rpx; }
+.back { width: 123rpx; padding: 0; flex: none; }
+.grow { flex: 1; }

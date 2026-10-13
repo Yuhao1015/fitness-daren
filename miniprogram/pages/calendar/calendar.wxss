@@ -1,0 +1,22 @@
+.legend { padding: 19rpx 23rpx; display: flex; flex-direction: column; gap: 15rpx; border-radius: var(--r-sm); }
+.wrap-legend { display: flex; flex-wrap: wrap; gap: 23rpx; font-size: 23rpx; color: var(--text-2); }
+.lg { width: 27rpx; height: 27rpx; border-radius: 8rpx; box-sizing: border-box; }
+.lg-done { background: var(--green); }
+.lg-plan { background: var(--tint); border: 1px solid #B9DABF; }
+.lg-today { background: var(--ink); border-radius: 999px; }
+.lg-sel { border: 2px solid var(--ink); }
+.grid-cal { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 12rpx; }
+.wd { text-align: center; font-size: 23rpx; color: var(--text-3); }
+.cell-blank { height: 100rpx; }
+.cell { height: 100rpx; padding-top: 10rpx; border-radius: var(--r-sm); border: 1px solid var(--border); outline-offset: 1px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 10rpx; }
+.cell-num { width: 54rpx; height: 54rpx; border-radius: 999px; font-size: 27rpx; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.cell-dots { display: flex; gap: 4rpx; height: 12rpx; }
+.cell-dot { width: 12rpx; height: 12rpx; border-radius: 999px; }
+.sel-card { padding: 31rpx; display: flex; flex-direction: column; gap: 23rpx; }
+.mini-stat { background: #FFFFFF; border-radius: var(--r-sm); padding: 19rpx 23rpx; display: flex; align-items: center; gap: 12rpx; }
+.btn-mark { height: 85rpx; border-radius: 999px; border: 1px solid var(--border); background: #FFFFFF; color: var(--green-dark); font-size: 27rpx; font-weight: 600; }
+.tpl { padding: 23rpx 15rpx 23rpx 31rpx; display: flex; align-items: center; gap: 23rpx; }
+.tpl-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12rpx; }
+.wrap-tpl { display: flex; flex-wrap: wrap; gap: 8rpx; }
+.tpl-day { height: 58rpx; min-width: 58rpx; padding: 0 15rpx; border-radius: 999px; display: flex; align-items: center; justify-content: center; gap: 4rpx; box-sizing: border-box; }
+.dot-6 { width: 12rpx; height: 12rpx; border-radius: 999px; }

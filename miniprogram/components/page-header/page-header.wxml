@@ -1,0 +1,16 @@
+<view class="hdr" style="padding-top:{{padTop}}px">
+  <view class="hdr-left">
+    <text class="t14 c2">{{over}}</text>
+    <text class="hdr-title">{{title}}</text>
+  </view>
+  <view class="hdr-right">
+    <view class="hdr-num-row">
+      <view wx:if="{{icon}}" class="hdr-ic {{pulse ? 'hdr-pulse' : ''}}"><ui-icon name="{{icon}}" color="#D9822B" size="58" /></view>
+      <text class="hdr-num" aria-live="polite">{{num}}</text>
+    </view>
+    <view class="hdr-sub">
+      <view wx:for="{{moons}}" wx:key="key" class="hdr-moon" aria-hidden="true"><ui-icon name="moon" color="{{item.on ? '#1F5C38' : '#C9D2CB'}}" size="27" /></view>
+      <text class="t12 c2">{{numLabel}}</text>
+    </view>
+  </view>
+</view>

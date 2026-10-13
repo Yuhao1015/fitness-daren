@@ -1,0 +1,4 @@
+.set-row { padding: 23rpx 27rpx; }
+.switch { width: 100rpx; height: 62rpx; border-radius: 999px; padding: 6rpx; box-sizing: border-box; display: flex; flex: none; }
+.knob { width: 50rpx; height: 50rpx; border-radius: 999px; background: #FFFFFF; box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.2); transition: transform 0.2s ease; }
+.btn-danger { height: 85rpx; border-radius: 999px; border: 1px solid #B5523B; color: #B5523B; font-size: 27rpx; font-weight: 600; }

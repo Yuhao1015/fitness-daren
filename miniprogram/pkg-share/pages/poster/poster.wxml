@@ -1,0 +1,19 @@
+<view class="poster-page">
+  <view class="bar" style="padding-top:{{padTop}}px">
+    <text class="t16 sb white">{{title}}</text>
+    <view class="close" hover-class="is-pressed" aria-role="button" aria-label="关闭" bindtap="onClose"><ui-icon name="close" color="#FFFFFF" size="35" /></view>
+  </view>
+  <view class="sheet">
+    <view wx:if="{{loading}}" class="placeholder"><text class="t14 c2">正在生成海报…</text></view>
+    <view wx:elif="{{failed}}" class="placeholder"><text class="t14 c2">海报生成失败，请返回重试</text></view>
+    <image wx:else class="poster" src="{{src}}" mode="widthFix" show-menu-by-longpress />
+  </view>
+  <view class="actions">
+    <view class="btn btn-ghost-dark" hover-class="is-pressed" aria-role="button" bindtap="onShareImage">发给好友</view>
+    <view class="btn btn-primary" hover-class="is-pressed" aria-role="button" bindtap="onSave">保存到相册</view>
+  </view>
+  <text class="tip">保存后可发朋友圈 · 海报不包含体重等个人数据</text>
+  <canvas type="2d" id="poster-canvas" class="offscreen"></canvas>
+  <privacy-popup />
+  <toast id="toast" />
+</view>

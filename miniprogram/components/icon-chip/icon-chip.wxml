@@ -1,0 +1,5 @@
+<view class="ic ic-{{shape}}" hover-class="is-pressed" aria-role="button" aria-label="{{label}}" aria-selected="{{on}}" style="border-color:{{bd}};background:{{bg}}">
+  <view class="ic-icon {{dim ? 'ic-dim' : ''}}"><ui-icon name="{{icon}}" color="{{fg}}" size="{{size}}" /></view>
+  <text wx:if="{{sub}}" class="ic-sub" style="color:{{subFg || fg}}">{{sub}}</text>
+  <text wx:if="{{badge}}" class="ic-badge" aria-hidden="true">{{badge}}</text>
+</view>

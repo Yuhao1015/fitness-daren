@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="150" viewBox="0 0 240 150">
+<defs>
+    <filter id="dsBlur" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="4"></feGaussianBlur></filter>
+    <linearGradient id="dsBowl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFFFFF"></stop><stop offset="0.55" stop-color="#F3F0EA"></stop><stop offset="1" stop-color="#D9D3C8"></stop></linearGradient>
+    <linearGradient id="dsBowlIn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E4DFD6"></stop><stop offset="1" stop-color="#F6F3EE"></stop></linearGradient>
+    <radialGradient id="dsPlate" cx="0.45" cy="0.4" r="0.7"><stop offset="0" stop-color="#FFFFFF"></stop><stop offset="0.75" stop-color="#F4F2EE"></stop><stop offset="1" stop-color="#E2DED6"></stop></radialGradient>
+    <radialGradient id="dsYolk" cx="0.4" cy="0.35" r="0.7"><stop offset="0" stop-color="#FFC861"></stop><stop offset="0.6" stop-color="#F59A1E"></stop><stop offset="1" stop-color="#DD7A0E"></stop></radialGradient>
+    <linearGradient id="dsChicken" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7E3BE"></stop><stop offset="0.6" stop-color="#E8BE84"></stop><stop offset="1" stop-color="#C98D4C"></stop></linearGradient>
+    <radialGradient id="dsQuinoa" cx="0.5" cy="0.4" r="0.6"><stop offset="0" stop-color="#F0E2BC"></stop><stop offset="1" stop-color="#CDB27C"></stop></radialGradient>
+    <radialGradient id="dsRice" cx="0.5" cy="0.4" r="0.6"><stop offset="0" stop-color="#E3C79C"></stop><stop offset="1" stop-color="#B98F5F"></stop></radialGradient>
+    <linearGradient id="dsBeef" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9C4A34"></stop><stop offset="1" stop-color="#6B2E20"></stop></linearGradient>
+    <linearGradient id="dsSalmon" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFB08A"></stop><stop offset="0.5" stop-color="#F57C46"></stop><stop offset="1" stop-color="#D65C2B"></stop></linearGradient>
+    <linearGradient id="dsPotato" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FBB262"></stop><stop offset="1" stop-color="#E0761C"></stop></linearGradient>
+    <linearGradient id="dsGreen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7DB862"></stop><stop offset="1" stop-color="#4B8A3B"></stop></linearGradient>
+    <radialGradient id="dsTomato" cx="0.35" cy="0.3" r="0.75"><stop offset="0" stop-color="#FF8A78"></stop><stop offset="0.6" stop-color="#E5412F"></stop><stop offset="1" stop-color="#B92A1E"></stop></radialGradient>
+    <radialGradient id="dsBerry" cx="0.35" cy="0.3" r="0.75"><stop offset="0" stop-color="#8E9BE6"></stop><stop offset="0.6" stop-color="#4A5AB8"></stop><stop offset="1" stop-color="#2D3780"></stop></radialGradient>
+    <linearGradient id="dsGlass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.75"></stop><stop offset="0.3" stop-color="#FFFFFF" stop-opacity="0.15"></stop><stop offset="1" stop-color="#FFFFFF" stop-opacity="0.5"></stop></linearGradient>
+    <linearGradient id="dsYogurt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"></stop><stop offset="1" stop-color="#EFE9DC"></stop></linearGradient>
+    <linearGradient id="dsBox" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7F4EE"></stop><stop offset="1" stop-color="#E4DED3"></stop></linearGradient>
+    <pattern id="dsQuinoaDots" width="7" height="5" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.1" fill="#B9985A" opacity="0.8"></circle><circle cx="5" cy="3.5" r="1" fill="#FFF6DD" opacity="0.9"></circle></pattern>
+    <pattern id="dsRiceGrains" width="8" height="6" patternUnits="userSpaceOnUse"><ellipse cx="2" cy="2" rx="1.8" ry="0.9" fill="#F2DDB8" transform="rotate(25 2 2)"></ellipse><ellipse cx="6" cy="4.5" rx="1.8" ry="0.9" fill="#9C7446" opacity="0.7" transform="rotate(-20 6 4.5)"></ellipse></pattern>
+    <pattern id="dsOats" width="9" height="6" patternUnits="userSpaceOnUse"><ellipse cx="2.5" cy="2" rx="2.2" ry="1.2" fill="#E6C48A"></ellipse><ellipse cx="7" cy="4.5" rx="2" ry="1.1" fill="#B9874A"></ellipse></pattern>
+    <clipPath id="dsCupClip"><path d="M86 44 L154 44 L146 128 Q120 136 94 128 Z"></path></clipPath>
+</defs>
+      <ellipse cx="120" cy="71" rx="84" ry="18" fill="url(#dsRice)"></ellipse>
+      <ellipse cx="120" cy="71" rx="84" ry="18" fill="url(#dsRiceGrains)"></ellipse>
+</svg>

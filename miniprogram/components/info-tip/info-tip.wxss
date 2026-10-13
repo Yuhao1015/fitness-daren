@@ -1,0 +1,1 @@
+.tip { width: 85rpx; height: 85rpx; margin: -19rpx -19rpx -19rpx -12rpx; display: flex; align-items: center; justify-content: center; }

@@ -1,0 +1,8 @@
+.ic { position: relative; box-sizing: border-box; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
+.ic-icon { display: flex; }
+.ic-dim { opacity: .45; }
+.ic-badge { position: absolute; top: 6rpx; right: 8rpx; min-width: 27rpx; font-size: 19rpx; line-height: 1; font-weight: 700; color: var(--text-3, #66756B); text-align: right; }
+.ic-pill { height: 85rpx; border-radius: 999px; }
+.ic-tile { height: 112rpx; border-radius: 30rpx; }
+.ic-box { flex-direction: column; gap: 8rpx; border-radius: var(--r-sm); padding: 19rpx 8rpx 15rpx; min-height: 131rpx; }
+.ic-sub { font-size: 23rpx; font-weight: 500; line-height: 1; }

@@ -1,0 +1,15 @@
+<view wx:if="{{show}}" class="cel-mask" aria-role="dialog" aria-label="获得徽章 {{name}}">
+  <block wx:if="{{motion}}">
+    <view wx:for="{{bits}}" wx:key="key" class="bit" style="left:{{item.left}}%;background:{{item.color}};animation-delay:{{item.delay}}ms;transform:rotate({{item.rot}}deg)"></view>
+  </block>
+  <view class="cel-card {{motion ? 'pop' : ''}}">
+    <text class="t14 c2">获得新徽章</text>
+    <view class="medal" style="background:{{color}}"><ui-icon name="{{icon}}" color="#FFFFFF" size="92" /></view>
+    <text class="t28 b">{{name}}</text>
+    <text class="t14 c2">{{desc}}</text>
+    <view class="grid-2 cel-actions">
+      <button class="plain-btn btn btn-ghost" open-type="share" data-share="badge" data-id="{{badgeId}}">分享这枚徽章</button>
+      <view class="btn btn-sm-primary" hover-class="is-pressed" aria-role="button" bindtap="onClose">收下</view>
+    </view>
+  </view>
+</view>

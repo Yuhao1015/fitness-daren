@@ -1,0 +1,6 @@
+.opt { border: 1px solid var(--border); border-radius: var(--r-md); padding: 31rpx; font-size: 31rpx; font-weight: 600; }
+.card-img { width: 100%; border-radius: var(--r-md); }
+.hero { border-radius: var(--r-md); padding: 54rpx 38rpx; }
+.white { color: #FFFFFF; }
+.lock { padding: 38rpx; display: flex; align-items: center; gap: 23rpx; border-radius: var(--r-md); }
+.offscreen { position: fixed; left: -9999px; top: 0; width: 500px; height: 400px; }

@@ -1,0 +1,1 @@
+<view class="tip" aria-role="button" aria-label="{{label}}"><ui-icon name="info" color="{{fg}}" size="35" /></view>

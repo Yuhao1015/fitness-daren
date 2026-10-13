@@ -1,0 +1,6 @@
+.dish { position: relative; }
+.layer { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+@keyframes steam { 0% { transform: translateY(19rpx); opacity: 0; } 35% { opacity: 0.9; } 100% { transform: translateY(-35rpx); opacity: 0; } }
+.steam { animation: steam 2.6s ease-in-out infinite; opacity: 0; }
+.s2 { animation-delay: 0.85s; }
+.s3 { animation-delay: 1.7s; }

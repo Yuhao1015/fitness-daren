@@ -1,0 +1,21 @@
+<view class="screen">
+  <page-header over="徽章墙" title="已获得 {{vm.earned}} / {{vm.total}}" num="" num-label="" />
+  <view class="panel">
+    <scroll-view class="scroll" scroll-y>
+      <view class="content stack-24">
+        <view wx:for="{{vm.groups}}" wx:for-item="g" wx:key="key" class="stack-12">
+          <text class="t16 b">{{g.title}}</text>
+          <view class="grid-3">
+            <view wx:for="{{g.items}}" wx:key="key" class="bdg {{item.earned ? '' : 'locked'}}">
+              <view class="medal" style="background:{{item.earned ? item.color : '#E0EBDE'}}"><ui-icon name="{{item.icon}}" color="#FFFFFF" size="54" /></view>
+              <text class="t14 b">{{item.name}}</text>
+              <text class="t12 c2">{{item.earned ? item.dateText : item.progressText}}</text>
+              <view wx:if="{{!item.earned}}" class="track"><view class="fill" style="width:{{item.pct}}%"></view></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="foot"><view class="btn btn-ghost" hover-class="is-pressed" aria-role="button" bindtap="onBack">返回</view></view>
+  </view>
+</view>

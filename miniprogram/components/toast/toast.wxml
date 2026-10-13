@@ -1,0 +1,1 @@
+<view wx:if="{{visible}}" class="toast {{action ? 'toast-has-act' : ''}}" aria-role="alert"><text>{{msg}}</text><text wx:if="{{action}}" class="toast-act" aria-role="button" catchtap="onAct">{{action}}</text></view>

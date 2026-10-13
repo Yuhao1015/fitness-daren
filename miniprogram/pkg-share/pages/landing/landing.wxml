@@ -1,0 +1,54 @@
+<view class="screen">
+  <view class="ld-head">
+    <view class="row-8">
+      <image wx:if="{{sharer.avatarUrl}}" class="avatar" src="{{sharer.avatarUrl}}" mode="aspectFill" />
+      <view wx:else class="avatar avatar-empty"><ui-icon name="tab-me" color="#66756B" size="42" /></view>
+      <text class="t14 c2">{{sharer.nickname}} 邀请你一起练</text>
+    </view>
+    <text class="ld-title">{{headline}}</text>
+  </view>
+  <view class="panel">
+    <scroll-view class="scroll" scroll-y>
+      <view class="content stack-16">
+        <view wx:if="{{loading}}" class="placeholder"><text class="t14 c2">加载中…</text></view>
+        <image wx:if="{{posterSrc}}" class="poster" src="{{posterSrc}}" mode="widthFix" />
+
+        <view wx:if="{{type === 'dish' && dish}}" class="card dish">
+          <view class="art" style="background:{{dish.tint}}"><dish-art recipe-id="{{dish.recipeId}}" /></view>
+          <view class="stack-12 dish-body">
+            <text class="t20 b">{{dish.name}}</text>
+            <view class="grid-4">
+              <view class="macro"><text class="t16 b">{{dish.kcal}}</text><text class="t12 c2">kcal</text></view>
+              <view class="macro"><text class="t16 b">{{dish.p}}g</text><text class="t12 c2">蛋白质</text></view>
+              <view class="macro"><text class="t16 b">{{dish.c}}g</text><text class="t12 c2">碳水</text></view>
+              <view class="macro"><text class="t16 b">{{dish.f}}g</text><text class="t12 c2">脂肪</text></view>
+            </view>
+            <view class="wrap-6"><text wx:for="{{dish.chips}}" wx:key="*this" class="ing">{{item}}</text></view>
+          </view>
+        </view>
+
+        <view wx:if="{{type === 'plan' && plan}}" class="soft plan">
+          <text class="t20 b">{{plan.name}}</text>
+          <view class="wrap-6"><text wx:for="{{plan.days}}" wx:key="key" class="pill {{item.rest ? 'rest' : ''}}">{{item.label}}</text></view>
+          <text class="t14 c2">从今天起排 7 天，已有安排的日子不会被覆盖。</text>
+        </view>
+
+        <view wx:if="{{type === 'challenge' && challenge}}" class="soft plan">
+          <text class="t20 b">{{challenge.title}}</text>
+          <text class="t14 c2">{{challenge.sub}}</text>
+          <text class="t14">加入后，每次完成训练都会自动打卡，坚持到最后的人获得专属徽章。</text>
+        </view>
+
+        <view wx:if="{{type === 'buddy'}}" class="soft plan">
+          <text class="t14">成为搭子后，你们能互相看到每天有没有练；训练详情由各自的隐私开关决定。</text>
+        </view>
+      </view>
+    </scroll-view>
+    <view wx:if="{{!loading}}" class="ld-foot stack-8">
+      <view class="btn btn-primary" hover-class="is-pressed" aria-role="button" bindtap="onPrimary">{{primary}}</view>
+      <view class="btn btn-text" hover-class="is-pressed" aria-role="button" bindtap="onSecondary">先逛逛</view>
+    </view>
+  </view>
+  <canvas type="2d" id="landing-canvas" class="offscreen"></canvas>
+  <toast id="toast" />
+</view>

@@ -1,0 +1,50 @@
+<view class="focus">
+  <view class="f-top" style="padding-top:{{padTop}}px">
+    <view class="row-between">
+      <view class="row-8"><view class="dot-10" style="background:{{vm.partColor}}"></view><text class="t14 c2">{{vm.partName}} · 专注模式</text></view>
+      <view class="btn btn-ghost" hover-class="is-pressed" aria-role="button" bindtap="onDone">完成</view>
+    </view>
+    <view class="f-title"><view class="f-figure" aria-hidden="true"><ui-icon name="{{vm.figure}}" color="{{vm.partColor}}" size="96" /></view><text class="f-name">{{vm.name}}</text></view>
+    <text class="t14 c2">{{vm.lastText}}</text>
+    <view class="row-4 f-dots"><view wx:for="{{vm.dots}}" wx:key="key" class="f-dot" style="background:{{item.done ? '#2E7D4F' : '#E0EBDE'}}"></view></view>
+    <view wx:if="{{vm.prText}}" class="f-pr" aria-label="新纪录 {{vm.prText}}"><ui-icon name="trophy" color="#8A4513" size="31" /><text>{{vm.prText}}</text></view>
+  </view>
+
+  <view wx:if="{{vm.resting}}" class="f-rest" aria-live="polite">
+    <text class="t14 c2">组间休息</text>
+    <text class="f-clock">{{vm.restText}}</text>
+    <view class="f-track"><view class="f-fill" style="width:{{vm.restPct}}%"></view></view>
+    <view class="grid-3">
+      <view class="btn btn-ghost" hover-class="is-pressed" aria-role="button" data-d="-15" bindtap="onRestAdjust">−15 秒</view>
+      <view class="btn btn-ghost" hover-class="is-pressed" aria-role="button" bindtap="onSkipRest">跳过</view>
+      <view class="btn btn-ghost" hover-class="is-pressed" aria-role="button" data-d="15" bindtap="onRestAdjust">+15 秒</view>
+    </view>
+  </view>
+
+  <view class="f-main">
+    <view class="f-stepper">
+      <text class="t14 c2">重量</text>
+      <view class="f-row">
+        <view class="f-btn" hover-class="is-pressed" aria-role="button" aria-label="减 2.5 公斤" data-d="-2.5" data-kind="w" bindtap="onW" bindlongpress="onHoldStart" bindtouchend="onHoldEnd" bindtouchcancel="onHoldEnd"><ui-icon name="minus" color="#1E2A22" size="46" /></view>
+        <view class="f-val"><text class="f-num">{{vm.wText}}</text><text class="t20 c2">{{vm.wUnit}}</text></view>
+        <view class="f-btn" hover-class="is-pressed" aria-role="button" aria-label="加 2.5 公斤" data-d="2.5" data-kind="w" bindtap="onW" bindlongpress="onHoldStart" bindtouchend="onHoldEnd" bindtouchcancel="onHoldEnd"><ui-icon name="plus" color="#2E7D4F" size="46" /></view>
+      </view>
+    </view>
+    <view class="f-stepper">
+      <text class="t14 c2">{{vm.rUnit === '秒' ? '时长' : '次数'}}</text>
+      <view class="f-row">
+        <view class="f-btn" hover-class="is-pressed" aria-role="button" aria-label="减 1" data-d="-1" data-kind="r" bindtap="onR" bindlongpress="onHoldStart" bindtouchend="onHoldEnd" bindtouchcancel="onHoldEnd"><ui-icon name="minus" color="#1E2A22" size="46" /></view>
+        <view class="f-val"><text class="f-num">{{vm.rText}}</text><text class="t20 c2">{{vm.rUnit}}</text></view>
+        <view class="f-btn" hover-class="is-pressed" aria-role="button" aria-label="加 1" data-d="1" data-kind="r" bindtap="onR" bindlongpress="onHoldStart" bindtouchend="onHoldEnd" bindtouchcancel="onHoldEnd"><ui-icon name="plus" color="#2E7D4F" size="46" /></view>
+      </view>
+    </view>
+    <view class="row-8 f-quick">
+      <view wx:if="{{vm.canUseLast}}" class="btn btn-ghost" hover-class="is-pressed" aria-role="button" bindtap="onUseLast">照上次</view>
+      <view wx:if="{{vm.overload.show}}" class="btn btn-sm-outline" hover-class="is-pressed" aria-role="button" bindtap="onOverload">{{vm.overload.label}}</view>
+    </view>
+  </view>
+
+  <view class="f-foot">
+    <view class="btn btn-primary" hover-class="is-pressed" aria-role="button" bindtap="onComplete">{{vm.completeLabel}}</view>
+  </view>
+</view>

@@ -1,0 +1,154 @@
+<view class="screen {{motion ? '' : 'no-motion'}}">
+  <page-header over="{{vm.header.over}}" title="{{vm.header.title}}" num="{{vm.header.num}}" num-label="{{vm.header.numLabel}}" icon="{{vm.header.icon}}" moons="{{vm.header.moons}}" pulse="{{vm.header.pulse && motion}}" />
+  <view class="panel">
+    <scroll-view class="scroll" scroll-y enhanced show-scrollbar="{{false}}">
+      <view class="content">
+
+        <!-- 选部位：图标优先，推荐一条 + 一排图标 -->
+        <view wx:if="{{vm.mode === 'pick'}}" class="stack-16">
+          <!-- 本周 7 个点：练过的用部位色，今天加圈，排了计划的描边 -->
+          <view class="week" aria-label="{{vm.week.aria}}">
+            <view class="week-dots">
+              <view wx:for="{{vm.week.dots}}" wx:key="key" class="wd {{item.today ? 'wd-today' : ''}}" style="background:{{item.bg}};border-color:{{item.bd}}" aria-label="{{item.label}}"></view>
+            </view>
+            <text class="week-text">{{vm.week.text}}</text>
+          </view>
+          <view class="suggest">
+            <view class="suggest-ic" style="background:{{vm.suggest.color}}"><ui-icon name="{{vm.suggest.icon}}" color="#FFFFFF" size="72" /></view>
+            <view class="suggest-main"><text class="suggest-name">{{vm.suggest.name}}</text><text class="t12 c2">{{vm.suggest.why}}</text></view>
+            <info-tip fg="{{vm.info.suggest.fg}}" data-key="suggest" bindtap="onInfo" />
+            <view class="go {{vm.hint.go ? 'hint-ring' : ''}}" hover-class="is-pressed" aria-role="button" aria-label="就练{{vm.suggest.name}}" bindtap="onSuggestPick"><ui-icon name="play" color="#FFFFFF" size="38" /></view>
+          </view>
+          <view wx:if="{{vm.info.suggest.open}}" class="note">{{vm.info.suggest.text}}</view>
+          <view class="grid-7">
+            <icon-chip wx:for="{{vm.chips}}" wx:key="key" shape="tile" size="76" badge="{{item.badge}}" dim="{{item.dim}}" icon="{{item.icon}}" fg="{{item.on ? item.fg : item.color}}" bg="{{item.bg}}" bd="{{item.bd}}" on="{{item.on}}" label="{{item.label}}" data-pid="{{item.id}}" bindtap="onTogglePart" />
+          </view>
+        </view>
+
+        <!-- 训练中（原型 93–202） -->
+        <view wx:if="{{vm.mode === 'training'}}" class="stack-20">
+          <view class="grid-7">
+            <icon-chip wx:for="{{vm.chips}}" wx:key="key" shape="tile" size="76" badge="{{item.badge}}" dim="{{item.dim}}" icon="{{item.icon}}" fg="{{item.on ? item.fg : item.color}}" bg="{{item.bg}}" bd="{{item.bd}}" on="{{item.on}}" label="{{item.label}}" data-pid="{{item.id}}" bindtap="onTogglePart" />
+          </view>
+
+          <view wx:for="{{vm.sections}}" wx:for-item="sec" wx:key="key" class="stack-8">
+            <view class="sec-head" style="background:{{sec.headBg}}" hover-class="is-pressed" aria-role="button" aria-label="{{sec.toggleAria}}" aria-expanded="{{sec.open}}" data-pid="{{sec.pid}}" bindtap="onToggleSection">
+              <view class="chev"><view class="rot" style="transform:rotate({{sec.chevron}}deg)"><ui-icon name="chevron-down" color="#1F5C38" size="31" /></view></view>
+              <view class="sec-title">
+                <view class="sec-name"><ui-icon name="part-{{sec.pid}}" color="{{sec.color}}" size="62" /><text>{{sec.name}}</text></view>
+                <text wx:if="{{sec.closed}}" class="t12 c2">{{sec.summary}}</text>
+              </view>
+              <text class="t14 c2">{{sec.kcalText}}</text>
+            </view>
+
+            <view wx:if="{{sec.open}}" class="stack-8">
+              <!-- 有氧（原型 115–141） -->
+              <view wx:if="{{sec.isCardio}}" class="cardio" style="border-color:{{sec.cardio.cBd}};background:{{sec.cardio.cBg}}">
+                <view class="wrap-6">
+                  <view wx:for="{{sec.cardio.types}}" wx:key="key" class="chip-sm" hover-class="is-pressed" aria-role="button" aria-selected="{{item.on}}" style="border-color:{{item.bd}};background:{{item.bg}};color:{{item.fg}}" data-type="{{item.id}}" bindtap="onCardioType">{{item.label}}</view>
+                </view>
+                <view class="grid-2">
+                  <view class="label"><text>时长（分钟，可选）</text>
+                    <input class="input input-plain" type="number" placeholder="例如 30" value="{{sec.cardio.mins}}" bindblur="onCardioMins" bindconfirm="onCardioMins" />
+                  </view>
+                  <view class="label"><text>消耗（kcal）</text>
+                    <input class="input input-plain" style="border-color:{{sec.cardio.kcalBd}}" type="number" placeholder="手表或器械读数" value="{{sec.cardio.kcal}}" bindblur="onCardioKcal" bindconfirm="onCardioKcal" />
+                  </view>
+                </view>
+                <view wx:if="{{sec.cardio.hasEst}}" class="btn btn-est" hover-class="is-pressed" aria-role="button" data-est="{{sec.cardio.est}}" bindtap="onUseEst">{{sec.cardio.estLabel}}</view>
+                <view class="row-between">
+                  <text class="t12 cg">{{sec.cardio.hint}}</text>
+                  <info-tip fg="{{vm.info.cardio.fg}}" data-key="cardio" bindtap="onInfo" />
+                </view>
+                <view wx:if="{{vm.info.cardio.open}}" class="note">{{vm.info.cardio.text}}</view>
+              </view>
+
+              <!-- 力量动作（原型 142–185） -->
+              <view wx:for="{{sec.items}}" wx:for-item="ex" wx:key="key" class="ex" style="border-color:{{ex.bd}};background:{{ex.bg}}">
+                <view class="ex-head">
+                  <view class="ex-toggle" aria-role="button" aria-label="{{ex.toggleAria}}" aria-expanded="{{ex.expanded}}" data-exid="{{ex.exId}}" bindtap="onToggleExercise">
+                    <view class="chev" style="background:{{ex.chevBg}}">
+                      <view wx:if="{{ex.hasSets}}" class="rot" style="transform:rotate({{ex.chevron}}deg)"><ui-icon name="chevron-down" color="#1F5C38" size="31" /></view>
+                    </view>
+                    <view class="stack-2 ex-title"><text class="ex-name">{{ex.name}}</text><text class="t12 c2">{{ex.meta}}</text></view>
+                  </view>
+                  <view class="round" hover-class="is-pressed" aria-role="button" aria-label="{{ex.name}} 进入专注模式" data-exid="{{ex.exId}}" bindtap="onFocus"><ui-icon name="play" color="#2E7D4F" size="31" /></view>
+                  <view wx:if="{{ex.canRepeat}}" class="round repeat {{vm.hint.target === 'add' && vm.hint.exId === ex.exId ? 'hint-ring' : ''}}" hover-class="is-pressed" aria-role="button" aria-label="{{ex.repeatAria}}" data-exid="{{ex.exId}}" bindtap="onRepeatLast"><ui-icon name="repeat" color="#1F5C38" size="35" /></view>
+                  <view wx:else class="round" hover-class="is-pressed" aria-role="button" aria-label="{{ex.name}} 删除最后一组" aria-disabled="{{ex.zero}}" data-exid="{{ex.exId}}" bindtap="onDecSet"><ui-icon name="minus" color="{{ex.decFg}}" size="31" /></view>
+                  <text class="count">{{ex.count}} 组</text>
+                  <view class="round {{vm.hint.target === 'add' && vm.hint.exId === ex.exId ? 'hint-ring' : ''}}" hover-class="is-pressed" aria-role="button" aria-label="{{ex.name}} 加一组" data-exid="{{ex.exId}}" bindtap="onIncSet"><ui-icon name="plus" color="#2E7D4F" size="31" /></view>
+                </view>
+                <view wx:if="{{ex.showRows}}" class="rows">
+                  <view wx:for="{{ex.rows}}" wx:for-item="st" wx:key="key" class="set-row {{st.done ? 'is-done' : ''}}" style="background:{{st.rowBg}}">
+                    <view class="set-no"><text class="no">{{st.no}}</text><text wx:if="{{st.prev}}" class="prev" aria-label="上次这一组 {{st.prev}}">{{st.prev}}</text></view>
+                    <view class="field">
+                      <input class="input" type="digit" aria-label="{{st.wLabel}}" placeholder="{{st.wPh}}" value="{{st.w}}" data-exid="{{ex.exId}}" data-idx="{{st.idx}}" bindblur="onSetW" bindconfirm="onSetW" />
+                      <text class="unit">kg</text>
+                    </view>
+                    <view class="field">
+                      <input class="input" type="number" aria-label="{{st.rLabel}}" placeholder="0" value="{{st.r}}" data-exid="{{ex.exId}}" data-idx="{{st.idx}}" bindblur="onSetR" bindconfirm="onSetR" />
+                      <text class="unit">{{ex.unitLabel}}</text>
+                    </view>
+                    <view class="round check {{vm.hint.target === 'check' && vm.hint.exId === ex.exId && st.idx === 0 ? 'hint-ring' : ''}}" style="border-color:{{st.bd}};background:{{st.bg}}" hover-class="is-pressed" aria-role="button" aria-label="{{st.doneLabel}}{{st.pr ? '，新纪录' : ''}}" aria-selected="{{st.done}}" data-exid="{{ex.exId}}" data-idx="{{st.idx}}" bindtap="onToggleSetDone">
+                      <ui-icon name="check" color="{{st.fg}}" size="35" />
+                      <view wx:if="{{st.pr}}" class="pr-badge"><ui-icon name="trophy" color="#8A4513" size="27" /></view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 训练完成小结（原型 204–244） -->
+        <view wx:if="{{vm.mode === 'done'}}" class="stack-16">
+          <view class="done-card">
+            <view class="row-8">
+              <view class="done-badge"><ui-icon name="check" color="#FFFFFF" size="42" /></view>
+              <view class="stack-2"><text class="t20 b">训练完成</text><text class="t14 c2">{{vm.summary.partsText}}</text></view>
+            </view>
+            <view class="white-row">
+              <text class="t14 c2">已坚持</text>
+              <view class="persist">
+                <text class="big-num">{{vm.summary.persistDays}}</text><text class="t14 c2 ml8">天 · {{vm.summary.weekText}}</text>
+                <view class="moons {{refill ? 'refill' : ''}}" aria-label="还能休 2 天"><view wx:for="{{vm.summary.moons}}" wx:key="key" class="moon-i"><ui-icon name="moon" color="{{item.on ? '#1F5C38' : '#C9D2CB'}}" size="35" /></view></view>
+              </view>
+            </view>
+            <text class="t12 c2 serial">第 {{vm.summary.checkinNo}} 次打卡</text>
+            <view wx:if="{{vm.summary.hasPr}}" class="pr"><ui-icon name="trophy" color="#8A4513" size="35" /><text>{{vm.summary.pr}}</text></view>
+            <view class="grid-3">
+              <view class="stat"><text class="t20 b">{{vm.summary.volume}}</text><text class="t12 c2">训练容量 kg</text></view>
+              <view class="stat"><text class="t20 b">{{vm.summary.doneSets}}</text><text class="t12 c2">组</text></view>
+              <view class="stat"><text class="t20 b">{{vm.summary.mins}}</text><text class="t12 c2">分钟（估）</text></view>
+            </view>
+          </view>
+          <view wx:if="{{features.poster}}" class="btn btn-primary" hover-class="is-pressed" aria-role="button" bindtap="onPoster"><ui-icon name="poster" color="#FFFFFF" size="35" /><text class="ml8">生成打卡海报</text></view>
+          <view class="btn btn-outline" hover-class="is-pressed" aria-role="button" bindtap="onGoRec">看看练后吃什么</view>
+          <view wx:if="{{canRemind}}" class="btn btn-ghost cg" hover-class="is-pressed" aria-role="button" bindtap="onRemind">下次练 {{vm.suggest.text}} · 明天 19:00 提醒我</view>
+          <view class="btn btn-text" hover-class="is-pressed" aria-role="button" bindtap="onUndo">继续调整训练</view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <!-- 底栏（原型 191–200） -->
+    <view wx:if="{{vm.mode === 'training'}}" class="footer">
+      <view wx:if="{{vm.info.sets.open}}" class="note">{{vm.info.sets.text}}</view>
+      <!-- 打勾后这一行变成休息条：部位图标、倒计时、−15 / 跳过 / +15 -->
+      <view wx:if="{{rest.show}}" class="rest-bar" aria-live="polite" aria-label="{{rest.aria}}">
+        <view class="rest-ic" style="background:{{rest.color}}"><ui-icon name="{{rest.icon}}" color="#FFFFFF" size="50" /></view>
+        <view class="rest-main">
+          <text class="rest-clock">{{rest.text}}</text>
+          <view class="rest-track"><view class="rest-fill" style="width:{{rest.pct}}%;background:{{rest.color}}"></view></view>
+        </view>
+        <view class="rest-btn" hover-class="is-pressed" aria-role="button" aria-label="少休息 15 秒" data-d="-15" bindtap="onRestAdjust">−15</view>
+        <view class="rest-btn" hover-class="is-pressed" aria-role="button" aria-label="跳过休息" bindtap="onSkipRest"><ui-icon name="skip" color="#1F5C38" size="35" /></view>
+        <view class="rest-btn" hover-class="is-pressed" aria-role="button" aria-label="多休息 15 秒" data-d="15" bindtap="onRestAdjust">+15</view>
+      </view>
+      <view wx:else class="progress-line"><text class="t12 c2">{{vm.progressText}}</text><info-tip fg="{{vm.info.sets.fg}}" data-key="sets" bindtap="onInfo" /></view>
+      <view class="btn btn-complete" style="background:{{vm.complete.bg}};color:{{vm.complete.fg}}" hover-class="is-pressed" aria-role="button" aria-disabled="{{!vm.complete.enabled}}" bindtap="onComplete">{{vm.complete.label}}</view>
+    </view>
+    <view class="tab-gap"></view>
+  </view>
+  <celebrate show="{{cel.show}}" badge-id="{{cel.id}}" name="{{cel.name}}" desc="{{cel.desc}}" icon="{{cel.icon}}" color="{{cel.color}}" motion="{{cel.motion}}" bind:close="onCelebrateClose" />
+  <toast id="toast" />
+</view>

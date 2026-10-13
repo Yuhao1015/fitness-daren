@@ -1,0 +1,78 @@
+<view class="screen">
+  <page-header over="{{vm.header.over}}" title="{{vm.header.title}}" num="{{vm.header.num}}" num-label="{{vm.header.numLabel}}" />
+  <view class="panel">
+    <scroll-view class="scroll" scroll-y enhanced show-scrollbar="{{false}}">
+      <view class="content stack-16">
+        <view class="row-between">
+          <view class="row-8">
+            <view class="round" hover-class="is-pressed" aria-role="button" aria-label="上个月" bindtap="onPrev"><ui-icon name="chevron-left" color="#1E2A22" size="35" /></view>
+            <view class="round" hover-class="is-pressed" aria-role="button" aria-label="下个月" bindtap="onNext"><ui-icon name="chevron-right" color="#1E2A22" size="35" /></view>
+          </view>
+          <view class="row-8">
+            <view wx:if="{{vm.showBack}}" class="btn btn-ghost cg" hover-class="is-pressed" aria-role="button" bindtap="onBackToday">回到今天</view>
+            <view class="round" hover-class="is-pressed" aria-role="button" aria-label="日历标记说明" aria-expanded="{{vm.info.legend.open}}" data-key="legend" bindtap="onInfo"><ui-icon name="info" color="{{vm.info.legend.fg}}" size="35" /></view>
+          </view>
+        </view>
+
+        <view wx:if="{{vm.info.legend.open}}" class="soft legend">
+          <view class="wrap-legend">
+            <view class="row-8"><view class="lg lg-done"></view><text>已完成</text></view>
+            <view class="row-8"><view class="lg lg-plan"></view><text>已计划</text></view>
+            <view class="row-8"><view class="lg lg-today"></view><text>今天</text></view>
+            <view class="row-8"><view class="lg lg-sel"></view><text>选中</text></view>
+          </view>
+          <text class="t12 c2">日期下方的小圆点是当天的训练部位，颜色和部位对应。</text>
+        </view>
+
+        <view class="grid-cal">
+          <text class="wd">一</text><text class="wd">二</text><text class="wd">三</text><text class="wd">四</text><text class="wd">五</text><text class="wd">六</text><text class="wd">日</text>
+          <block wx:for="{{vm.cells}}" wx:for-item="cell" wx:key="key">
+            <view wx:if="{{cell.blank}}" class="cell-blank"></view>
+            <view wx:else class="cell" style="border-color:{{cell.bd}};background:{{cell.bg}};outline:2px solid {{cell.ol}}" aria-role="button" aria-label="{{cell.aria}}" aria-selected="{{cell.isSel}}" data-date="{{cell.date}}" bindtap="onPickDay">
+              <view class="cell-num" style="background:{{cell.numBg}};color:{{cell.numFg}}">{{cell.day}}</view>
+              <view class="cell-dots"><view wx:for="{{cell.dots}}" wx:for-item="dt" wx:key="key" class="cell-dot" style="background:{{dt.color}};box-shadow:0 0 0 1px {{dt.ring}}"></view></view>
+            </view>
+          </block>
+        </view>
+
+        <view class="soft sel-card">
+          <view class="row-between"><text class="t16 b">{{vm.sel.title}}</text><text class="badge" style="background:{{vm.sel.badgeBg}};color:{{vm.sel.badgeFg}}">{{vm.sel.status}}</text></view>
+          <view class="grid-7">
+            <icon-chip wx:for="{{vm.sel.chips}}" wx:key="key" shape="tile" size="76" badge="{{item.badge}}" dim="{{item.dim}}" icon="{{item.icon}}" fg="{{item.on ? item.fg : item.color}}" bg="{{item.bg}}" bd="{{item.bd}}" on="{{item.on}}" label="{{item.label}}" data-pid="{{item.id}}" bindtap="onTogglePart" />
+          </view>
+          <text wx:if="{{vm.sel.hasHint}}" class="hint-warn">{{vm.sel.hint}}</text>
+          <view wx:if="{{vm.sel.hasStats}}" class="grid-2">
+            <view class="mini-stat" aria-label="训练消耗"><ui-icon name="tab-today" color="#1F5C38" size="42" /><text class="t16 b">{{vm.sel.burn}}</text><text class="t12 c2">kcal</text></view>
+            <view class="mini-stat" aria-label="饮食摄入"><ui-icon name="tab-food" color="#D9822B" size="42" /><text class="t16 b">{{vm.sel.intake}}</text><text class="t12 c2">kcal</text></view>
+          </view>
+          <view wx:if="{{vm.sel.canStart}}" class="btn btn-primary" hover-class="is-pressed" aria-role="button" bindtap="onStart">开始训练</view>
+          <view wx:if="{{vm.sel.canMark}}" class="btn btn-mark" hover-class="is-pressed" aria-role="button" bindtap="onMark">{{vm.sel.markLabel}}</view>
+        </view>
+
+        <view class="stack-8">
+          <view class="row-title"><text class="t16 b">快速排计划</text><info-tip fg="{{vm.info.tpl.fg}}" data-key="tpl" bindtap="onInfo" /></view>
+          <view wx:if="{{vm.info.tpl.open}}" class="note">{{vm.info.tpl.text}}</view>
+          <view wx:for="{{vm.templates}}" wx:for-item="tp" wx:key="key" class="card tpl">
+            <view class="tpl-body">
+              <text class="t16 b">{{tp.name}}</text>
+              <view class="wrap-tpl"><view wx:for="{{tp.days}}" wx:for-item="td" wx:key="key" class="tpl-day" style="background:{{td.bg}}" aria-label="{{td.label}}"><ui-icon wx:if="{{td.rest}}" name="moon" color="#66756B" size="31" /><ui-icon wx:for="{{td.icons}}" wx:for-item="ic" wx:key="key" name="{{ic.name}}" color="{{ic.color}}" size="46" /></view></view>
+            </view>
+            <button class="plain-btn round" open-type="share" data-tpl="{{tp.id}}" aria-label="分享 {{tp.name}} 给好友"><ui-icon name="share" color="#1F5C38" size="35" /></button>
+            <view class="btn btn-sm-outline" hover-class="is-pressed" aria-role="button" aria-label="套用 {{tp.name}}" data-id="{{tp.id}}" bindtap="onApplyTpl">套用</view>
+          </view>
+        </view>
+
+        <view class="stack-8">
+          <view class="grid-7">
+            <view wx:for="{{vm.stats}}" wx:key="key" class="stat-line" aria-label="{{item.name}} {{item.count}} 次">
+              <ui-icon name="{{item.icon}}" color="{{item.color}}" size="64" />
+              <text class="t16 b">{{item.count}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="tab-gap"></view>
+  </view>
+  <toast id="toast" />
+</view>

@@ -1,0 +1,10 @@
+<view wx:if="{{show}}" class="mask">
+  <view class="sheet" aria-role="dialog" aria-label="隐私保护提示">
+    <text class="t20 b">隐私保护提示</text>
+    <text class="t14 c2">设置头像昵称、保存海报到相册前，需要你阅读并同意<text class="link" bindtap="onOpenContract">《健身达人隐私保护指引》</text>。体重等训练数据不会出现在任何分享内容里。</text>
+    <view class="grid-2">
+      <view class="btn btn-ghost" hover-class="is-pressed" aria-role="button" bindtap="onDisagree">暂不</view>
+      <button id="privacy-agree" class="plain-btn btn btn-primary" open-type="agreePrivacyAuthorization" bindagreeprivacyauthorization="onAgree">同意</button>
+    </view>
+  </view>
+</view>

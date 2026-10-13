@@ -1,0 +1,4 @@
+.toast { position: fixed; left: 50%; bottom: calc(230rpx + env(safe-area-inset-bottom)); transform: translateX(-50%); max-width: 620rpx; box-sizing: border-box; text-align: center; background: var(--ink); color: #FFFFFF; font-size: 27rpx; padding: 23rpx 31rpx; border-radius: 999px; box-shadow: 0 15rpx 38rpx rgba(30, 42, 34, 0.25); animation: toastIn 0.2s ease-out; z-index: 1000; }
+@keyframes toastIn { from { transform: translate(-50%, 15rpx); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+.toast-has-act { display: flex; align-items: center; gap: 23rpx; padding-right: 15rpx; white-space: nowrap; }
+.toast-act { color: #9BE3B0; font-weight: 700; padding: 8rpx 15rpx; border-radius: 999px; }

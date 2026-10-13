@@ -1,0 +1,15 @@
+.hdr { flex: none; padding-left: 38rpx; padding-right: 38rpx; padding-bottom: 35rpx; display: flex; align-items: flex-end; justify-content: space-between; gap: 23rpx; }
+.hdr-left { display: flex; flex-direction: column; gap: 8rpx; min-width: 0; }
+.hdr-title { font-size: 54rpx; line-height: 69rpx; font-weight: 700; }
+.hdr-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8rpx; flex: none; }
+.hdr-num-row { display: flex; align-items: center; gap: 4rpx; }
+.hdr-num { font-size: 77rpx; line-height: 77rpx; font-weight: 700; color: var(--green-dark); }
+.hdr-ic { display: flex; transform-origin: 50% 90%; }
+.hdr-pulse { animation: hdr-hop 1.6s ease-in-out infinite; }
+.hdr-sub { display: flex; align-items: center; gap: 6rpx; }
+.hdr-moon { display: flex; }
+@keyframes hdr-hop {
+  0%, 70%, 100% { transform: scale(1); }
+  80% { transform: scale(1.18) rotate(-6deg); }
+  90% { transform: scale(0.96) rotate(3deg); }
+}

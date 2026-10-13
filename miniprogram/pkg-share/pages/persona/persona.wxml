@@ -1,0 +1,32 @@
+<view class="screen">
+  <page-header over="训练人格" title="{{mode === 'quiz' ? '30 秒测一测' : '我的训练人格'}}" num="" num-label="" />
+  <view class="panel">
+    <scroll-view class="scroll" scroll-y>
+      <view class="content stack-16">
+        <block wx:if="{{mode === 'quiz' && step < quiz.length}}">
+          <text class="t12 c2">第 {{step + 1}} / {{quiz.length}} 题</text>
+          <text class="t20 b">{{quiz[step].q}}</text>
+          <view class="stack-8">
+            <view wx:for="{{quiz[step].options}}" wx:key="value" class="opt" hover-class="is-pressed" aria-role="button" data-qid="{{quiz[step].id}}" data-value="{{item.value}}" bindtap="onAnswer">{{item.label}}</view>
+          </view>
+        </block>
+
+        <block wx:if="{{result && result.unlocked}}">
+          <image wx:if="{{cardSrc}}" class="card-img" src="{{cardSrc}}" mode="widthFix" />
+          <view wx:else class="hero" style="background:{{result.color}}"><text class="t20 b white">{{result.name}}</text></view>
+          <text wx:if="{{!cardSrc}}" class="t16">{{result.desc}}</text>
+          <text wx:if="{{result.predicted}}" class="t12 c2">这是根据你的回答预测的。坚持训练 14 天后，会用你的真实记录重新校准。</text>
+          <text wx:else class="t12 c2">根据你最近 4 周的训练时间、节奏和部位得出，娱乐向，不是心理测评。</text>
+          <button class="plain-btn btn btn-primary" open-type="share">分享我的训练人格</button>
+          <view wx:if="{{result.predicted}}" class="btn btn-outline" hover-class="is-pressed" aria-role="button" bindtap="onStart">开始第一次训练</view>
+        </block>
+
+        <view wx:if="{{mode === 'mine' && result && !result.unlocked}}" class="soft lock">
+          <ui-icon name="tab-me" color="#66756B" size="54" />
+          <view class="stack-4"><text class="t16 b">还没解锁</text><text class="t14 c2">{{result.progressText}}</text></view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <canvas type="2d" id="persona-canvas" class="offscreen"></canvas>
+</view>

@@ -1,0 +1,86 @@
+{
+  "pages": [
+    "pages/today/today",
+    "pages/calendar/calendar",
+    "pages/food/food",
+    "pages/rec/rec",
+    "pages/me/me"
+  ],
+  "subPackages": [
+    {
+      "root": "pkg-train",
+      "pages": [
+        "pages/focus/focus"
+      ]
+    },
+    {
+      "root": "pkg-onboard",
+      "pages": [
+        "pages/onboarding/onboarding"
+      ]
+    },
+    {
+      "root": "pkg-share",
+      "pages": [
+        "pages/poster/poster",
+        "pages/landing/landing",
+        "pages/dishbook/dishbook",
+        "pages/album/album",
+        "pages/badges/badges",
+        "pages/persona/persona"
+      ]
+    },
+    {
+      "root": "pkg-social",
+      "pages": [
+        "pages/settings/settings"
+      ]
+    }
+  ],
+  "tabBar": {
+    "custom": true,
+    "color": "#66756B",
+    "selectedColor": "#1F5C38",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "pagePath": "pages/today/today",
+        "text": "今日"
+      },
+      {
+        "pagePath": "pages/calendar/calendar",
+        "text": "日历"
+      },
+      {
+        "pagePath": "pages/food/food",
+        "text": "饮食"
+      },
+      {
+        "pagePath": "pages/rec/rec",
+        "text": "推荐"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "ui-icon": "/components/ui-icon/ui-icon",
+    "page-header": "/components/page-header/page-header",
+    "info-tip": "/components/info-tip/info-tip",
+    "toast": "/components/toast/toast",
+    "dish-art": "/components/dish-art/dish-art",
+    "privacy-popup": "/components/privacy-popup/privacy-popup",
+    "icon-chip": "/components/icon-chip/icon-chip"
+  },
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundColor": "#DDEFD9",
+    "backgroundTextStyle": "dark"
+  },
+  "renderer": "webview",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

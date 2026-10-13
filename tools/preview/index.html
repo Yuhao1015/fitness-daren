@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <script>
+    (function () {
+      var q = location.search.match(/[?&]device=(d)/);
+      var phone = window.matchMedia('(max-width: 600px) and (pointer: coarse)').matches;
+      if (q ? q[1] === '1' : phone) document.documentElement.classList.add('pv-device');
+    })();
+  </script>
+  <title>健身达人 · 小程序预览</title>
+  <link rel="stylesheet" href="frame.css">
+</head>
+<body>
+  <div class="pv-stage">
+    <div class="pv-phone" id="phone">
+      <div class="wx-viewport" id="viewport"></div>
+      <div class="pv-statusbar" aria-hidden="true">
+        <span class="clock">9:41</span>
+        <span class="sys"><i></i><i></i><i></i><b></b></span>
+      </div>
+      <div class="pv-capsule" id="capsule" aria-hidden="true"><span>···</span><em></em><span class="ring"></span></div>
+    </div>
+    <aside class="pv-panel">
+      <h1>健身达人 · 预览</h1>
+      <p class="pv-note">在浏览器里用一个极简运行时跑真实的 wxml / wxss / ts。仅用于验收布局与交互，真机表现以微信开发者工具为准。</p>
+      <div class="pv-group">
+        <h2>数据</h2>
+        <button id="btn-demo">载入演示数据（5 周记录）</button>
+        <button id="btn-demo-done">演示数据 + 今天已打卡</button>
+        <button id="btn-fresh">全新用户（走引导）</button>
+        <button id="btn-seed-social">载入搭子、挑战与回响（云端模拟）</button>
+        <button id="btn-cloud">云端：开</button>
+      </div>
+      <div class="pv-group">
+        <h2>页面</h2>
+        <select id="route-select"></select>
+        <button id="btn-back">返回上一页</button>
+        <button id="btn-privacy">弹出隐私授权</button>
+      </div>
+      <div class="pv-group">
+        <h2>屏幕宽度</h2>
+        <select id="width-select">
+          <option value="360">360（小屏安卓）</option>
+          <option value="375">375（iPhone SE / 8）</option>
+          <option value="390">390（iPhone 14）</option>
+          <option value="414">414（Plus / Max）</option>
+        </select>
+      </div>
+    </aside>
+  </div>
+  <script type="module" src="js/entry.js"></script>
+</body>
+</html>

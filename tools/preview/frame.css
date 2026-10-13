@@ -1,0 +1,52 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #151a17; color: #dfe8e1; font-family: system-ui, 'PingFang SC', 'Microsoft YaHei', sans-serif; min-height: 100vh; }
+.pv-stage { display: flex; gap: 36px; justify-content: center; align-items: flex-start; padding: 28px 16px; flex-wrap: wrap; }
+.pv-phone { position: relative; width: 390px; height: 844px; flex: none; border-radius: 46px; overflow: hidden; background: #fff; box-shadow: 0 0 0 10px #060807, 0 0 0 11px #2a322d, 0 28px 70px rgba(0, 0, 0, .55); transform: translateZ(0); --rpx: 0.52px; --safe-bottom: 34px; }
+.pv-panel { width: 260px; display: flex; flex-direction: column; gap: 18px; }
+.pv-panel h1 { font-size: 18px; margin: 0; }
+.pv-panel h2 { font-size: 12px; margin: 0 0 8px; color: #8fa196; font-weight: 600; letter-spacing: .04em; }
+.pv-panel .pv-note { margin: 0; font-size: 12px; line-height: 1.6; color: #8fa196; }
+.pv-panel .pv-group { display: flex; flex-direction: column; gap: 8px; }
+.pv-panel button, .pv-panel select { font: inherit; font-size: 13px; padding: 9px 12px; border-radius: 10px; border: 1px solid #34413a; background: #1f2823; color: #dfe8e1; cursor: pointer; text-align: left; }
+.pv-panel button:hover { background: #28332d; }
+
+/* 模拟系统栏与右上角胶囊（用来检查页头是否避开它） */
+.pv-statusbar { position: absolute; top: 0; left: 0; right: 0; height: 47px; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 30px 7px 34px; pointer-events: none; z-index: 300; font-weight: 600; font-size: 15px; color: #000; }
+.pv-statusbar .sys { display: flex; gap: 4px; align-items: center; }
+.pv-statusbar .sys i { width: 3px; height: 9px; background: #000; border-radius: 1px; }
+.pv-statusbar .sys i:nth-child(2) { height: 11px; }
+.pv-statusbar .sys i:nth-child(3) { height: 13px; }
+.pv-statusbar .sys b { width: 22px; height: 11px; border: 1.5px solid #000; border-radius: 3px; margin-left: 4px; }
+.pv-capsule { position: absolute; right: 7px; top: 51px; width: 87px; height: 32px; border-radius: 16px; border: 1px solid rgba(0, 0, 0, .12); background: rgba(255, 255, 255, .72); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: space-around; z-index: 300; pointer-events: none; color: #000; font-size: 15px; font-weight: 700; letter-spacing: -1px; }
+.pv-capsule em { width: 1px; height: 18px; background: rgba(0, 0, 0, .15); }
+.pv-capsule .ring { width: 16px; height: 16px; border: 2px solid #000; border-radius: 50%; position: relative; }
+.pv-capsule .ring::after { content: ''; position: absolute; inset: 3px; background: #000; border-radius: 50%; }
+
+/* 小程序运行环境的默认样式 */
+.wx-viewport { position: absolute; inset: 0; overflow: hidden; font-size: 16px; line-height: 1.2; }
+.wx-page { position: absolute; inset: 0; overflow-x: hidden; overflow-y: auto; scrollbar-width: none; }
+.wx-page::-webkit-scrollbar { display: none; }
+[hidden] { display: none !important; }
+.wx-view, .wx-block, .wx-scroll-view { display: block; }
+.wx-sv-y { overflow-y: auto; overflow-x: hidden; }
+.wx-sv-x { overflow-x: auto; overflow-y: hidden; white-space: nowrap; }
+.wx-scroll-view { scrollbar-width: none; }
+.wx-scroll-view::-webkit-scrollbar { display: none; }
+.wx-image { display: inline-block; width: 320px; height: 240px; }
+.wx-input, .wx-textarea { border: 0; outline: 0; background: transparent; font: inherit; color: inherit; padding: 0; margin: 0; min-height: 1.4em; }
+.wx-input::placeholder { color: #bbb; }
+.wx-button { position: relative; display: block; margin-left: auto; margin-right: auto; padding-left: 14px; padding-right: 14px; box-sizing: border-box; font-size: 18px; text-align: center; text-decoration: none; line-height: 1.3333333; border-radius: 5px; overflow: hidden; color: #000; background-color: #f8f8f8; border: 0; font-family: inherit; }
+.wx-button::after { content: ' '; width: 200%; height: 200%; position: absolute; top: 0; left: 0; border: 1px solid rgba(0, 0, 0, .2); transform: scale(.5); transform-origin: 0 0; box-sizing: border-box; border-radius: 10px; pointer-events: none; }
+page-header, toast, privacy-popup { display: block; }
+ui-icon, info-tip, dish-art { display: inline; }
+.wx-tabbar-host { position: absolute; left: 0; right: 0; bottom: 0; z-index: 100; }
+
+.pv-phone * { scrollbar-width: none; }
+.pv-phone *::-webkit-scrollbar { display: none; }
+
+/* 手机直连模式：占满整个屏幕，不画手机外框、状态栏与右侧面板 */
+html.pv-device, html.pv-device body { height: 100%; overflow: hidden; overscroll-behavior: none; background: #fff; }
+html.pv-device .pv-stage { display: block; padding: 0; }
+html.pv-device .pv-panel, html.pv-device .pv-statusbar { display: none; }
+html.pv-device .pv-phone { position: fixed; inset: 0; width: 100% !important; height: 100vh; height: 100dvh; border-radius: 0; box-shadow: none; transform: none; }
+html.pv-device { -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%; }

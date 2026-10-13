@@ -1,0 +1,28 @@
+page {
+  --green: #2E7D4F;
+  --green-dark: #1F5C38;
+  --tint: #EAF5EA;
+  --tint-2: #F5FAF4;
+  --border: #E0EBDE;
+  --ink: #1E2A22;
+  --text-2: #4E5E53;
+  --text-3: #66756B;
+  --muted: #B4BEB6;
+  --header-bg: #DDEFD9;
+  --warn-bg: #FDF1E7;
+  --warn-fg: #8A4513;
+  --track: #EEF2EE;
+  --chip-off: #F1F4F1;
+  --heat-1: #B9DABF;
+  --heat-2: #6FB27F;
+  --heat-3: #2E7D4F;
+  --macro-p: #2E7D4F;
+  --macro-c: #D9822B;
+  --macro-f: #5B7FB8;
+  --font: 'Outfit', -apple-system, 'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', sans-serif;
+  --r-sm: 23rpx;   /* 12px */
+  --r-md: 38rpx;   /* 20px */
+  --r-lg: 54rpx;   /* 28px */
+  --tap: 85rpx;    /* 44px */
+  --tab-gap: calc(132rpx + env(safe-area-inset-bottom));
+}

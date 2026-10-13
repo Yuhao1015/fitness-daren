@@ -1,0 +1,80 @@
+<view class="screen">
+  <page-header over="{{vm.header.over}}" title="{{vm.header.title}}" num="{{vm.header.num}}" num-label="{{vm.header.numLabel}}" />
+  <view class="panel">
+    <scroll-view class="scroll" scroll-y enhanced show-scrollbar="{{false}}">
+      <view class="content stack-20">
+        <view wx:if="{{vm.protein.show}}" class="stack-4">
+          <text class="t12 c2">{{vm.protein.text}}</text>
+          <view class="track"><view class="fill" style="width:{{vm.protein.pct}}%"></view></view>
+        </view>
+
+        <!-- 常吃：放在最上面，点一下直接记入（可撤回） -->
+        <view wx:if="{{vm.frequent.length}}" class="frequent">
+          <ui-icon name="heart" color="#D1497A" size="38" />
+          <view class="wrap-6">
+            <view wx:for="{{vm.frequent}}" wx:key="key" class="chip-sm" hover-class="is-pressed" aria-role="button" aria-label="再记一份 {{item.title}}" data-idx="{{item.idx}}" bindtap="onAddFrequent">{{item.title}} · {{item.kcal}}</view>
+          </view>
+        </view>
+
+        <view class="stack-12">
+          <view class="grid-3">
+            <icon-chip wx:for="{{vm.meats}}" wx:key="key" shape="box" size="62" icon="{{item.icon}}" fg="{{item.on ? item.fg : '#4E5E53'}}" bg="{{item.bg}}" bd="{{item.bd}}" on="{{item.on}}" label="{{item.label}}" sub="{{item.sub}}" subFg="{{item.subFg}}" data-id="{{item.id}}" bindtap="onMeat" />
+          </view>
+          <view class="grid-3">
+            <icon-chip wx:for="{{vm.methods}}" wx:key="key" shape="box" size="62" icon="{{item.icon}}" fg="{{item.on ? item.fg : '#4E5E53'}}" bg="{{item.bg}}" bd="{{item.bd}}" on="{{item.on}}" label="{{item.label}}" sub="{{item.sub}}" subFg="{{item.subFg}}" data-id="{{item.id}}" bindtap="onMethod" />
+          </view>
+        </view>
+
+        <view class="stack-8">
+          <view class="row-between">
+            <view class="row-title"><info-tip fg="{{vm.info.grams.fg}}" data-key="grams" bindtap="onInfo" /></view>
+            <view class="row-8">
+              <view class="round" hover-class="is-pressed" aria-role="button" aria-label="减少 25 克" bindtap="onGramsDec"><ui-icon name="minus" color="#1E2A22" size="31" /></view>
+              <text class="grams" aria-live="polite">{{vm.grams}} g</text>
+              <view class="round" hover-class="is-pressed" aria-role="button" aria-label="增加 25 克" bindtap="onGramsInc"><ui-icon name="plus" color="#2E7D4F" size="31" /></view>
+            </view>
+          </view>
+          <view class="grid-4">
+            <view wx:for="{{vm.presets}}" wx:key="key" class="chip t14" hover-class="is-pressed" aria-role="button" aria-selected="{{item.on}}" style="border-color:{{item.bd}};background:{{item.bg}};color:{{item.fg}}" data-id="{{item.id}}" bindtap="onPreset">{{item.label}}</view>
+          </view>
+          <view wx:if="{{vm.info.grams.open}}" class="note">{{vm.info.grams.text}}</view>
+        </view>
+
+        <view class="soft calc">
+          <view class="row-between calc-top">
+            <view class="stack-4"><text class="t14 c2">{{vm.item.title}}</text><text class="calc-kcal">{{vm.item.kcal}}<text class="t14 ml4">kcal</text></text></view>
+            <text class="t14 c2">蛋白质 <text class="cg b t16">{{vm.item.p}}</text> g</text>
+          </view>
+          <view class="btn btn-primary" hover-class="is-pressed" aria-role="button" bindtap="onAddMeat">记入</view>
+        </view>
+
+        <view class="stack-8">
+          <view class="row-4">
+            <icon-chip wx:for="{{vm.quick.tabs}}" wx:key="key" class="tab-chip" size="50" icon="{{item.icon}}" fg="{{item.fg}}" bg="{{item.bg}}" bd="{{item.bd}}" on="{{item.on}}" label="{{item.label}}" data-id="{{item.id}}" bindtap="onQuickTab" />
+          </view>
+          <view class="grid-4">
+            <icon-chip wx:for="{{vm.quick.items}}" wx:key="key" shape="box" size="58" icon="{{item.icon}}" fg="{{item.on ? item.fg : '#4E5E53'}}" bg="{{item.bg}}" bd="{{item.bd}}" on="{{item.on}}" label="{{item.label}}" data-id="{{item.id}}" bindtap="onQuickItem" />
+          </view>
+          <view class="grid-3">
+            <view wx:for="{{vm.quick.mults}}" wx:key="key" class="chip t16 sb" hover-class="is-pressed" aria-role="button" aria-selected="{{item.on}}" style="border-color:{{item.bd}};background:{{item.bg}};color:{{item.fg}}" data-id="{{item.id}}" bindtap="onQuickMult">{{item.label}}</view>
+          </view>
+          <view class="row-between quick-add">
+            <text class="t14">{{vm.quick.preview}}</text>
+            <view class="btn btn-sm-primary" hover-class="is-pressed" aria-role="button" bindtap="onAddQuick">记入</view>
+          </view>
+        </view>
+
+        <view class="stack-8">
+          <view class="row-between"><ui-icon name="poster" color="#4E5E53" size="42" /><text class="t14 c2">{{vm.balance}}</text></view>
+          <text wx:if="{{vm.empty}}" class="empty">还没有记录</text>
+          <view wx:for="{{vm.list}}" wx:key="key" class="log-row">
+            <view class="stack-2 log-main"><text class="t14 sb">{{item.title}}</text><text class="t12 c2">{{item.kcal}} kcal · 蛋白 {{item.p}} g</text></view>
+            <view class="round no-border" hover-class="is-pressed" aria-role="button" aria-label="移除 {{item.title}}" data-id="{{item.id}}" bindtap="onRemove"><ui-icon name="close" color="#4E5E53" size="31" /></view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="tab-gap"></view>
+  </view>
+  <toast id="toast" bind:action="onUndoAdd" />
+</view>
